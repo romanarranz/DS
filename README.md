@@ -12,8 +12,10 @@ En esta práctica se aborda tanto el diseño como la implementación de diferent
 
 > **Consideraciones:**
 
-> - Los diseños han sido realizados con Visual Paradigm.
+> - Los diseños han sido realizados con *Visual Paradigm*.
 > - Las GUI no era necesario implementarlas pero si aconsejable para tener una mayor claridad en cuanto a los resultados.
+> - Se ha utilizado el IDE *Eclipse* para el desarrollo de estas prácticas bajo sugerencia del profesor (ya que él ejecuta las prácticas en este IDE).
+> - Se ha usado el plugin *WindowBuilder* para *Eclipse* con el que se ha desarrollado las GUI de los distintos ejercicios.
 > 
 > **Implementaciones:**
 > 
