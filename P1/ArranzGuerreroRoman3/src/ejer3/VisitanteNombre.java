@@ -1,21 +1,25 @@
 package ejer3;
 
 public class VisitanteNombre extends VisitanteEquipo {
-	String nombre;
+	private String nombre;
+	
+	VisitanteNombre(){
+		nombre = "";
+	}
 	
 	@Override
 	public void visitar(Disco d){
-		nombre = d.getNombre();
+		nombre += d.getNombre()+"+";
 	}
 	
 	@Override
 	public void visitar(Bus b){
-		nombre = b.getNombre();
+		nombre += b.getNombre()+"+";
 	}
 	
 	@Override
 	public void visitar(Tarjeta t){
-		nombre = t.getNombre();
+		nombre += t.getNombre()+"+";
 	}
 	
 	public String getNombre(){

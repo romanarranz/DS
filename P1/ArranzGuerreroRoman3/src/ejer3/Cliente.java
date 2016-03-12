@@ -1,23 +1,34 @@
 package ejer3;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 
-public class Cliente {
-	private int descuento;
+import GUI.AppWindow;
+
+public class Cliente implements Runnable{
+	private int descuento, contadorHebrasPersonal;
 	private TipoCliente tipo;
-
+	private AppWindow gui;
+	private boolean running;
+	
+	public static int contadorHebras, totalHebras, totalClientes = 0;
+	
 	// Equipo que consulta el cliente
-	private Equipo equipo; 
+	private ArrayList<Equipo> configuracionEquipo; 
+
+	private int idCliente;
 	
-	// Definicion de visitantes
-	private VisitanteNombre vNombre;
-	private VisitantePrecio vPrecio;
-	private VisitantePrecioConDescuento vDescuento;
-	
-	Cliente(TipoCliente t, Equipo e, VisitanteEquipo ve){		
+	Cliente(int idCliente, TipoCliente t, ArrayList<Equipo> config, AppWindow gui){		
+		this.idCliente = idCliente;
 		this.tipo = t;
+		this.configuracionEquipo = config;		
+		this.gui = gui;
+		this.contadorHebras = 0;
+		this.totalHebras = 100;
+		this.running = true;
+		
+		Cliente.totalClientes++;
+		
+		gui.addRow();
 		
 		switch(tipo.getTipo()){
 			case 1:
@@ -28,45 +39,46 @@ public class Cliente {
 				break;
 			default:
 				this.descuento = 0;
-		}
-		
-		vNombre = (VisitanteNombre) ve;
-		//vPrecio = (VisitantePrecio) ve;
-		//vDescuento = (VisitantePrecioConDescuento) ve;
-		
-		equipo = e;
+		}		
 	}
 	
-	public int getDescuento(){
-		return descuento;
-	}
-	
-	public int getTipo(){
-		return tipo.getTipo();
-	}
-	
-	public static int endThreadCounter = 0;
-	private int totalThread = 20;
-	public void runTests() {
-		  Consulta testCase = new Consulta(equipo, vNombre);
-		  ExecutorService executor = Executors.newCachedThreadPool();
-		  
-		  if(totalThread >= 25)
+	@Override
+	public void run(){
+		if(totalHebras >= 25)
 			  this.descuento = this.descuento+5;
 		  
-		  for (int i = 0; i < totalThread; i++) 
-			  executor.execute(testCase);
-		  		  
-		  // Finalizamos el lanzador de hebras
-		  executor.shutdown();
-		  try {
-			  // TTL de 60s
-			  executor.awaitTermination(60, TimeUnit.SECONDS);
-		  }
-		  catch(InterruptedException e){
-			  e.printStackTrace();
-		  }
-		  // Imprimimos cuantas hebras han acabado
-		  System.out.println("Han acabado "+endThreadCounter+" hebras");
+		  while(running){
+			  try {
+				  Thread.sleep(ApplicationRunner.randInt(1,4)*10);
+			  } catch (InterruptedException e) {
+				  e.printStackTrace();
+			  }
+			  
+			  double precio;
+			  VisitanteEquipo visitante = new VisitanteNombre();
+			  gui.setDato(idCliente, 0, tipo.toString());
+			  gui.setDato(idCliente, 1, contadorHebrasPersonal);
+			
+			  for(int i = 0; i<configuracionEquipo.size(); i++)
+				  configuracionEquipo.get(i).aceptar(visitante);
+			  gui.setDato(idCliente, 2, ((VisitanteNombre) visitante).getNombre());
+			
+			  visitante = new VisitantePrecio();
+			  for(int i = 0; i<configuracionEquipo.size(); i++)
+				  configuracionEquipo.get(i).aceptar(visitante);
+			
+			  precio = ((VisitantePrecio) visitante).getPrecio();
+			  gui.setDato(idCliente, 3, precio);
+			  gui.setDato(idCliente, 4, descuento);
+						  
+			  Cliente.contadorHebras++;
+			  contadorHebrasPersonal++;
+			  
+			  if(Cliente.contadorHebras > Cliente.totalHebras-Cliente.totalClientes)
+				  running = false;
+		}
+		  
+		// Imprimimos cuantas hebras han acabado
+		System.out.println("Han acabado "+contadorHebrasPersonal+" hebras del idCliente "+idCliente);
 	}
 }

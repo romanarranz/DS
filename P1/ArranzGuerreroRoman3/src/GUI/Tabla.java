@@ -8,12 +8,9 @@ public class Tabla extends AbstractTableModel {
 	private ArrayList<ArrayList<Object>> datos;
 
     public Tabla() {
-    	nombreColumnas = new String[]{"#","Name","Price","Quantity"};
+    	nombreColumnas = new String[]{"#","Numero de Peticiones","Nombre","Precio Unitario","Descuento aplicado"};
     	datos = new ArrayList<>();
-    	for(int i = 0; i<3; i++){
-			datos.add(new ArrayList<Object>());
-		}
-    	rellenaDatosEjemplo();
+    	addRow();
     }
 
 	@Override
@@ -36,21 +33,16 @@ public class Tabla extends AbstractTableModel {
 		return datos.get(rowIndex).get(columnIndex);
 	}
 
-	private void rellenaDatosEjemplo(){
-		datos.get(0).add(new String("Kathy"));
-		datos.get(0).add(new String("Doe"));
-		datos.get(0).add(new String("Rowing"));
-		datos.get(0).add(new Integer(3));
+	public void addRow(){
+		ArrayList<Object> row = new ArrayList<Object>();
+				
+		row.add(new String(""));
+		row.add(new String(""));
+		row.add(new String(""));
+		row.add(new String(""));
+		row.add(new String(""));
 		
-		datos.get(1).add(new String("Kathy"));
-		datos.get(1).add(new String("Doe"));
-		datos.get(1).add(new String("Rowing"));
-		datos.get(1).add(new Integer(3));
-		
-		datos.get(2).add(new String("Kathy"));
-		datos.get(2).add(new String("Doe"));
-		datos.get(2).add(new String("Rowing"));
-		datos.get(2).add(new Integer(3));
+		datos.add(row);
 	}
 	
 	public void setDato(int i, int j, Object dato){

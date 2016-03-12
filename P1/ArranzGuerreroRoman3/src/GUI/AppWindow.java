@@ -9,14 +9,15 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 
 public class AppWindow {
-
+	private static AppWindow INSTANCE = new AppWindow();
+	
 	private JPanel contentPane;
 	private JFrame frame;
 	private JTable table;
 	private JScrollPane scroll;
 	private Tabla model;
 	
-	public AppWindow() {
+	private AppWindow() {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -29,13 +30,21 @@ public class AppWindow {
         
 		model = new Tabla();
 		table = new JTable(model);
-		//table = new JTable(dataArray, cabeceraColumnas);
+
 		scroll = new JScrollPane(table);
 		scroll.setSize(400, 200);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scroll);
 		
 		frame.setVisible(true);
+	}
+	
+	public static AppWindow getInstance() {
+        return INSTANCE;
+    }
+	
+	public void addRow(){
+		model.addRow();
 	}
 	
 	public void setDato(int fila, int columna, Object dato){

@@ -13,6 +13,22 @@ public enum TipoCliente {
 		return tipo;
 	}
 	
+	@Override
+	public String toString(){
+		String s;
+		switch(tipo){
+			case 0:
+				s= "CLIENTEREGULAR"; 
+				break;
+			case 1:
+				s = "CLIENTEVIP";
+				break;
+			default:
+				s = "CLIENTEMAYORISTA";
+		}
+		return s;
+	}
+	
 	public static TipoCliente crear(int tipo){
 		TipoCliente tc = null;
 		switch(tipo){
