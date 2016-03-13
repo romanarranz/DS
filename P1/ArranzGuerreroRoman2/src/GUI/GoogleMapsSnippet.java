@@ -13,6 +13,11 @@ public class GoogleMapsSnippet {
 	private JLabel label;
 	
 	public GoogleMapsSnippet(){
+		captaYGuardaImagen();
+		label = new JLabel(new ImageIcon((new ImageIcon("image.jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH)));
+	}
+	
+	private void captaYGuardaImagen(){
 		try {
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center=Madrid,Spain&zoom=6&size=800x800&maptype=hybrid&key=ABQIAAAAgb5KEVTm54vkPcAkU9xOvBR30EG5jFWfUzfYJTWEkWk2p04CHxTGDNV791-cU95kOnweeZ0SsURYSA&format=jpg";
             String destinationFile = "image.jpg";
@@ -33,11 +38,14 @@ public class GoogleMapsSnippet {
             e.printStackTrace();
             System.exit(1);
         }
-		
-		label = new JLabel(new ImageIcon((new ImageIcon("image.jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH)));
 	}
 	
 	public JLabel getMapa(){
 		return label;
+	}
+	
+	public ImageIcon actualiza(){
+		captaYGuardaImagen();
+		return new ImageIcon((new ImageIcon("image2.jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH));
 	}
 }

@@ -12,17 +12,6 @@ public class GraficaTemperatura implements Observador{
 		ventana = d;
 	}
 	
-	private static int randInt(int min, int max) {
-	    Random rand = new Random();
-	    int randomNum = rand.nextInt((max - min) + 1) + min;
-
-	    return randomNum;
-	}
-
-	public static int randomTemperatura() {
-	    return randInt(20,40);
-	}
-	
 	public void manejarEvento(int temperaturaActual){
 		this.temperaturaActual = temperaturaActual;		
 		refrescarGrafica();

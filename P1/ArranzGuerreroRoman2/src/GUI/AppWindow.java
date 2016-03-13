@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class AppWindow {
@@ -23,7 +25,7 @@ public class AppWindow {
 	private  GoogleMapsSnippet gmaps;
 	
 	public AppWindow() {
-		
+
 		frame = new JFrame("Monitor de Temperaturas");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 952, 646);
@@ -85,5 +87,10 @@ public class AppWindow {
 	public void setTemperaturaActual(int temperatura){
 		lTemperatura.setText(Integer.toString(temperatura)+"ºC");
 		tchart.actualizaTemperatura(temperatura);
+		actualizaMapa();
+	}
+	
+	public void actualizaMapa(){
+		googleMaps.setIcon(gmaps.actualiza());
 	}
 }
