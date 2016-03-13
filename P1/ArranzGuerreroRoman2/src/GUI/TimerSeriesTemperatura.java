@@ -41,12 +41,14 @@ public class TimerSeriesTemperatura {
     private float temperaturaActual;
     private ArrayList<Integer> t;
     
+    private DynamicTimeSeriesCollection dataset;
 	public TimerSeriesTemperatura(final String nombreSerie) {
 		t = getTiempo();
 		
-		final DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(1, COUNT, new Second());
+		//final DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(1, COUNT, new Second());
+		dataset = new DynamicTimeSeriesCollection(1, COUNT, new Second());
 		dataset.setTimeBase(new Second(t.get(0), t.get(1), t.get(2), t.get(3), t.get(4), t.get(5)));
-		dataset.addSeries(gaussianData(), 0, nombreSerie);
+		dataset.addSeries(generateData(), 0, nombreSerie);
 		
 		JFreeChart chart = createChart(dataset);
 
@@ -57,10 +59,10 @@ public class TimerSeriesTemperatura {
 			public void actionPerformed(ActionEvent e) {
 				String cmd = e.getActionCommand();
 				if (STOP.equals(cmd)) {
-					timer.stop();
+					//timer.stop();
 					run.setText(START);
 				} else {
-					timer.start();
+					//timer.start();
 					run.setText(STOP);
 				}
 			}
@@ -73,19 +75,23 @@ public class TimerSeriesTemperatura {
 			@Override
 	        public void actionPerformed(ActionEvent e) {
 	            if ("Rapido".equals(combo.getSelectedItem())) {
-	            	timer.setDelay(FAST);
+	            	//timer.setDelay(FAST);
+	            	System.out.println(FAST+"fast");
 	            } else {
-	                timer.setDelay(SLOW);
+	                //timer.setDelay(SLOW);
+	            	System.out.println(SLOW+"slow");
 	            }
 	        }
 		});
 
 		panelGraficos = new ChartPanel(chart);
-		btnPanel = new JPanel(new FlowLayout());
+		//btnPanel = new JPanel(new FlowLayout());
+		panelGraficos.setBounds(0, 0, 336, 415);
+		btnPanel = new JPanel();
 		btnPanel.add(run);
 		btnPanel.add(combo);
 
-		timer = new Timer(SLOW, new ActionListener() {
+		/*timer = new Timer(SLOW, new ActionListener() {
 	        float[] newData = new float[1];
 	
 	        @Override
@@ -95,10 +101,10 @@ public class TimerSeriesTemperatura {
 	            dataset.advanceTime();
 	            dataset.appendData(newData);
 	        }
-		});
+		});*/
 	}
 	
-	private float[] gaussianData() {
+	private float[] generateData() {
 	    float[] a = new float[COUNT];
 	    for (int i = 0; i < a.length; i++) {
 	        a[i] = GraficaTemperatura.randomTemperatura();
@@ -154,5 +160,12 @@ public class TimerSeriesTemperatura {
 	
 	public void actualizaTemperatura(int t){
 		temperaturaActual = t;
+		
+		float[] newData = new float[1];
+		
+            newData[0] = temperaturaActual;
+            //System.out.println("dataset1 : " + dataset.advanceTime());
+            dataset.advanceTime();
+            dataset.appendData(newData);
 	}
 }

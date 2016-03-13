@@ -26,7 +26,7 @@ public class AppWindow {
 		
 		frame = new JFrame("Monitor de Temperaturas");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 962, 646);
+		frame.setBounds(100, 100, 952, 646);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
@@ -35,7 +35,7 @@ public class AppWindow {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setForeground(Color.WHITE);
-		panel.setBounds(610, 10, 303, 181);
+		panel.setBounds(610, 6, 336, 195);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -57,13 +57,25 @@ public class AppWindow {
 		this.tchart = new TimerSeriesTemperatura("Temperaturas");
 		graficaPane = new JPanel();
 		graficaPane.setBackground(Color.WHITE);
-		graficaPane.setBounds(6, 192, 950, 426);
-		graficaPane.add(tchart.getPanelChart(), BorderLayout.CENTER);
-		graficaPane.add(tchart.getBtnPanel(), BorderLayout.SOUTH);
+		//graficaPane.setBounds(6, 192, 950, 426);
+		graficaPane.setBounds(610, 203, 336, 415);
+		//graficaPane.add(tchart.getPanelChart(), BorderLayout.CENTER);
+		graficaPane.add(tchart.getPanelChart());
+		//graficaPane.add(tchart.getBtnPanel(), BorderLayout.SOUTH);
+		//graficaPane.add(tchart.getBtnPanel());
+		
+		graficaPane.setLayout(null);
+		
 		contentPane.add(graficaPane);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(6, 510, 600, 108);
+		panel_1.add(tchart.getBtnPanel());
+		contentPane.add(panel_1);
+		
 		frame.setVisible(true);
-		tchart.start();
+		//tchart.start();
 	}
 	
 	public static AppWindow getInstance() {
