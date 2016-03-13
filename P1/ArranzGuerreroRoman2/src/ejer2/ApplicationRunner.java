@@ -1,11 +1,11 @@
 package ejer2;
 
-import GUI.Display;
+import GUI.AppWindow;
 
 public class ApplicationRunner {
 
 	public static void main(String[] args) {
-		Display appWindow = new Display();
+		AppWindow appWindow = new AppWindow();
 		
 		Pantalla p = new Pantalla(appWindow);
 		TiempoSatelital t = new TiempoSatelital();

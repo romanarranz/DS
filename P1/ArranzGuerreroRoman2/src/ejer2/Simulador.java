@@ -79,7 +79,7 @@ public class Simulador extends Observable implements Runnable{
     		    	if( segundos == 60 ) {
     		    		segundos = 0;
     		    		minutos++;
-    		    		running = false;    		    	
+    		    		running = false;   		    	
     		    	}    		    	
     		    }	
 			}

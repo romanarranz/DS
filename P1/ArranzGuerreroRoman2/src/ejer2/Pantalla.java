@@ -1,13 +1,13 @@
 package ejer2;
 
-import GUI.Display;
+import GUI.AppWindow;
 
 public class Pantalla implements Observador{
 	
 	int temperaturaActual;
-	private Display ventana; 
+	private AppWindow ventana; 
 	
-	Pantalla(Display d){
+	Pantalla(AppWindow d){
 		ventana = d;
 	}
 	

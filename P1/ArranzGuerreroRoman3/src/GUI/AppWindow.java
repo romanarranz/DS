@@ -18,7 +18,7 @@ public class AppWindow {
 	private Tabla model;
 	
 	private AppWindow() {
-		frame = new JFrame();
+		frame = new JFrame("Configuracion de Equipos");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.setBounds(100, 100, 494, 228);
