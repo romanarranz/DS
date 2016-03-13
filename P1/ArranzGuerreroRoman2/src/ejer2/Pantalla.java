@@ -5,9 +5,10 @@ import GUI.AppWindow;
 public class Pantalla implements Observador{
 	
 	int temperaturaActual;
-	private AppWindow ventana; 
+	private AppWindow ventana;
 	
 	Pantalla(AppWindow d){
+		temperaturaActual = 0;
 		ventana = d;
 	}
 	
@@ -17,7 +18,6 @@ public class Pantalla implements Observador{
 	}
 	
 	private void refrescarPantalla(){
-		System.out.println("Pantalla: "+temperaturaActual);
 		ventana.setTemperaturaActual(temperaturaActual);
 	}
 }

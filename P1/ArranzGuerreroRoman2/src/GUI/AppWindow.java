@@ -11,12 +11,16 @@ import java.awt.Color;
 import javax.swing.JButton;
 
 public class AppWindow {
-
-	private JPanel contentPane, estadisticasPanel;
+	private static AppWindow INSTANCE = new AppWindow();
+	
+	private JPanel contentPane, graficaPane;
 	private JFrame frame;
 	
-	private JButton btnActualizarTemperatura;
+	private JButton botonCambio;
 	private JLabel lTemperatura, googleMaps;
+	
+	private TimerSeriesTemperatura tchart;
+	private  GoogleMapsSnippet gmaps;
 	
 	public AppWindow() {
 		
@@ -41,28 +45,33 @@ public class AppWindow {
 		lTemperatura.setBounds(112, 65, 126, 53);
 		panel.add(lTemperatura);
 		
-		btnActualizarTemperatura = new JButton("Actualizar");
-		btnActualizarTemperatura.setBounds(90, 146, 117, 29);
-		panel.add(btnActualizarTemperatura);
+		botonCambio = new JButton("Actualizar");
+		botonCambio.setBounds(90, 146, 117, 29);
+		panel.add(botonCambio);
 		
-		GoogleMapsSnippet gmaps = new GoogleMapsSnippet();
+		gmaps = new GoogleMapsSnippet();
 		googleMaps = gmaps.getMapa();
 		googleMaps.setBounds(6, 10, 600, 494);
 		contentPane.add(googleMaps);
 		
-		TimerSeriesTemperatura tchart = new TimerSeriesTemperatura(); 
-		estadisticasPanel = new JPanel();
-		estadisticasPanel.setBackground(Color.WHITE);
-		estadisticasPanel.setBounds(6, 192, 950, 426);
-		estadisticasPanel.add(tchart.getPanelChart(), BorderLayout.CENTER);
-		estadisticasPanel.add(tchart.getBtnPanel(), BorderLayout.SOUTH);
-		contentPane.add(estadisticasPanel);
+		this.tchart = new TimerSeriesTemperatura("Temperaturas");
+		graficaPane = new JPanel();
+		graficaPane.setBackground(Color.WHITE);
+		graficaPane.setBounds(6, 192, 950, 426);
+		graficaPane.add(tchart.getPanelChart(), BorderLayout.CENTER);
+		graficaPane.add(tchart.getBtnPanel(), BorderLayout.SOUTH);
+		contentPane.add(graficaPane);
 		
 		frame.setVisible(true);
-		//tchart.start();
+		tchart.start();
 	}
+	
+	public static AppWindow getInstance() {
+        return INSTANCE;
+    }
 	
 	public void setTemperaturaActual(int temperatura){
 		lTemperatura.setText(Integer.toString(temperatura)+"ºC");
+		tchart.actualizaTemperatura(temperatura);
 	}
 }

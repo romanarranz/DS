@@ -3,7 +3,12 @@ package GUI;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -17,24 +22,31 @@ import org.jfree.data.time.DynamicTimeSeriesCollection;
 import org.jfree.data.time.Second;
 import org.jfree.data.xy.XYDataset;
 
+import ejer2.GraficaTemperatura;
+
 public class TimerSeriesTemperatura {
 	
-	private static final String TITLE = "Dynamic Series";
-    private static final String START = "Start";
-    private static final String STOP = "Stop";
-    private static final float MINMAX = 100;
-    private static final int COUNT = 2 * 60;
+	private static final String TITLE = "Monitor Temperaturas Cº";
+    private static final String START = "Comenzar";
+    private static final String STOP = "Parar";
+    private static final float MINMAX = 50;
+    private static final int COUNT = 30;
     private static final int FAST = 100;
-    private static final int SLOW = FAST * 5;
-    private static final Random random = new Random();
+    private static final int SLOW = FAST * 20;
+   
     private Timer timer;
     private ChartPanel panelGraficos;
     private JPanel btnPanel; 
     
-	public TimerSeriesTemperatura() {
+    private float temperaturaActual;
+    private ArrayList<Integer> t;
+    
+	public TimerSeriesTemperatura(final String nombreSerie) {
+		t = getTiempo();
+		
 		final DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(1, COUNT, new Second());
-		dataset.setTimeBase(new Second(0, 0, 0, 1, 1, 2011));
-		dataset.addSeries(gaussianData(), 0, "Gaussian data");
+		dataset.setTimeBase(new Second(t.get(0), t.get(1), t.get(2), t.get(3), t.get(4), t.get(5)));
+		dataset.addSeries(gaussianData(), 0, nombreSerie);
 		
 		JFreeChart chart = createChart(dataset);
 
@@ -55,12 +67,12 @@ public class TimerSeriesTemperatura {
 		});
 
 		final JComboBox combo = new JComboBox();
-		combo.addItem("Fast");
-		combo.addItem("Slow");
+		combo.addItem("Lento");
+		combo.addItem("Rapido");		
 		combo.addActionListener(new ActionListener() {	        
 			@Override
 	        public void actionPerformed(ActionEvent e) {
-	            if ("Fast".equals(combo.getSelectedItem())) {
+	            if ("Rapido".equals(combo.getSelectedItem())) {
 	            	timer.setDelay(FAST);
 	            } else {
 	                timer.setDelay(SLOW);
@@ -73,28 +85,23 @@ public class TimerSeriesTemperatura {
 		btnPanel.add(run);
 		btnPanel.add(combo);
 
-		timer = new Timer(FAST, new ActionListener() {
+		timer = new Timer(SLOW, new ActionListener() {
 	        float[] newData = new float[1];
 	
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            newData[0] = randomValue();
-	            System.out.println("dataset1 : " + dataset.advanceTime());
+	            newData[0] = temperaturaActual;
+	            //System.out.println("dataset1 : " + dataset.advanceTime());
 	            dataset.advanceTime();
 	            dataset.appendData(newData);
 	        }
 		});
 	}
-		
-	private float randomValue() {
-	    System.out.println("randomvalue : " + (float) (random.nextGaussian() * MINMAX / 3));
-	    return (float) (random.nextGaussian() * MINMAX / 3);
-	}
 	
 	private float[] gaussianData() {
 	    float[] a = new float[COUNT];
 	    for (int i = 0; i < a.length; i++) {
-	        a[i] = randomValue();
+	        a[i] = GraficaTemperatura.randomTemperatura();
 	    }
 	
 	    return a;
@@ -102,12 +109,13 @@ public class TimerSeriesTemperatura {
 	
 	private JFreeChart createChart(final XYDataset dataset) {
 	    final JFreeChart result = ChartFactory.createTimeSeriesChart(
-	        TITLE, "hh:mm:ss", "Claims Received", dataset, true, true, false);
+	        TITLE, t.get(3)+"/"+t.get(4)+"/"+t.get(5), "Temperaturas", dataset, true, true, false
+	    );
 	    final XYPlot plot = result.getXYPlot();
 	    ValueAxis domain = plot.getDomainAxis();
 	    domain.setAutoRange(true);
 	    ValueAxis range = plot.getRangeAxis();
-	    range.setRange(-MINMAX, MINMAX);
+	    range.setRange(0, MINMAX);
 	
 	    return result;
 	}
@@ -122,5 +130,29 @@ public class TimerSeriesTemperatura {
 	
 	public JPanel getBtnPanel(){
 		return btnPanel;
+	}
+	
+	private ArrayList<Integer> getTiempo(){
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"), new Locale("es","es"));
+		int sec = cal.get(Calendar.SECOND);
+		int min = cal.get(Calendar.MINUTE);
+		int hora = cal.get(Calendar.HOUR_OF_DAY);
+		int dia = cal.get(Calendar.DAY_OF_MONTH);
+		int mes = cal.get(Calendar.MONTH);
+		int anio = cal.get(Calendar.YEAR);
+		
+		ArrayList<Integer> t = new ArrayList<>();
+		t.add(sec);
+		t.add(min);
+		t.add(hora);
+		t.add(dia);
+		t.add(mes);
+		t.add(anio);
+		
+		return t;
+	}
+	
+	public void actualizaTemperatura(int t){
+		temperaturaActual = t;
 	}
 }
