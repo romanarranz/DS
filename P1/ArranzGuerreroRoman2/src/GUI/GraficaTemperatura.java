@@ -20,7 +20,9 @@ import org.jfree.data.time.DynamicTimeSeriesCollection;
 import org.jfree.data.time.Second;
 import org.jfree.data.xy.XYDataset;
 
-public class TimerSeriesTemperatura {
+import ejer2.Observador;
+
+public class GraficaTemperatura implements Observador{
 	
 	private String tituloGrafica;
     private String start;
@@ -38,7 +40,7 @@ public class TimerSeriesTemperatura {
     private ArrayList<Integer> t;
     
     private DynamicTimeSeriesCollection dataset;
-	public TimerSeriesTemperatura(final String nombreSerie) {
+	public GraficaTemperatura(final String nombreSerie) {
 		tituloGrafica = "Monitor Temperaturas Cº";
 		start = "Comenzar";
 		stop = "Parar";
@@ -158,5 +160,10 @@ public class TimerSeriesTemperatura {
 		// System.out.println("dataset1 : " + dataset.advanceTime());
         dataset.advanceTime();
         dataset.appendData(newData);
+	}
+
+	@Override
+	public void manejarEvento(int temperaturaActual) {
+		actualizaTemperatura(temperaturaActual);
 	}
 }

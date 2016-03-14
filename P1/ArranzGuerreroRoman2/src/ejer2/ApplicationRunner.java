@@ -1,24 +1,26 @@
 package ejer2;
 
-import GUI.AppWindow;
+import GUI.Pantalla;
+import GUI.BotonCambio;
+import GUI.GraficaTemperatura;
+import GUI.TiempoSatelital;
 
 public class ApplicationRunner {
 
 	public static void main(String[] args) {
-		AppWindow appWindow = AppWindow.getInstance();
+		Simulador s = new Simulador(1,20);
 		
-		Pantalla p = new Pantalla(appWindow);
+		Pantalla appWindow = Pantalla.getInstance();
 		TiempoSatelital t = new TiempoSatelital();
-		GraficaTemperatura g = new GraficaTemperatura(appWindow);
-		BotonCambio b = new BotonCambio(appWindow);
+		GraficaTemperatura g = new GraficaTemperatura("Temperaturas");
+		BotonCambio b = new BotonCambio(s);
 		
-		// Vamos a suponer que nos encontramos en EUW/España en Verano
-		// Si no tendriamos que hacer un selector de region y pais		
-		Simulador s = new Simulador(30,39);
-		s.incluirObservador(p);
+		s.incluirObservador(appWindow);
 		s.incluirObservador(t);
 		s.incluirObservador(g);
 		s.incluirObservador(b);
+		
+		appWindow.inicializar(b);
 		
 		Thread t1 = new Thread(s);
 		t1.start();

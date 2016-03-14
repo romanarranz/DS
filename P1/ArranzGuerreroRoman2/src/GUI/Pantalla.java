@@ -4,28 +4,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import ejer2.Observador;
+
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-public class AppWindow {
-	private static AppWindow INSTANCE = new AppWindow();
+public class Pantalla implements Observador{
+	private static Pantalla INSTANCE = new Pantalla();
 	
-	private JPanel contentPane, graficaPane;
+	private JPanel contentPane, graficaPane, panel;
 	private JFrame frame;
 	
-	private JButton botonCambio;
+	private BotonCambio actualiza;
 	private JLabel lTemperatura, googleMaps;
 	
-	private TimerSeriesTemperatura tchart;
-	private  GoogleMapsSnippet gmaps;
+	private GraficaTemperatura tchart;
+	private  TiempoSatelital gmaps;
 	
-	public AppWindow() {
-
+	public Pantalla() {
 		frame = new JFrame("Monitor de Temperaturas");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 952, 646);
@@ -34,7 +31,7 @@ public class AppWindow {
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setForeground(Color.WHITE);
 		panel.setBounds(610, 6, 336, 195);
@@ -46,26 +43,23 @@ public class AppWindow {
 		lTemperatura.setFont(new Font("Helvetica Neue", Font.PLAIN, 44));
 		lTemperatura.setBounds(112, 65, 126, 53);
 		panel.add(lTemperatura);
+	}
+	
+	public void inicializar(BotonCambio btn){
+		actualiza = btn;
+		actualiza.setBounds(90, 146, 117, 29);		
+		panel.add(actualiza);
 		
-		botonCambio = new JButton("Actualizar");
-		botonCambio.setBounds(90, 146, 117, 29);
-		panel.add(botonCambio);
-		
-		gmaps = new GoogleMapsSnippet();
+		gmaps = new TiempoSatelital();
 		googleMaps = gmaps.getMapa();
 		googleMaps.setBounds(6, 10, 600, 494);
 		contentPane.add(googleMaps);
 		
-		this.tchart = new TimerSeriesTemperatura("Temperaturas");
+		this.tchart = new GraficaTemperatura("Temperaturas");
 		graficaPane = new JPanel();
 		graficaPane.setBackground(Color.WHITE);
-		//graficaPane.setBounds(6, 192, 950, 426);
 		graficaPane.setBounds(610, 203, 336, 415);
-		//graficaPane.add(tchart.getPanelChart(), BorderLayout.CENTER);
 		graficaPane.add(tchart.getPanelChart());
-		//graficaPane.add(tchart.getBtnPanel(), BorderLayout.SOUTH);
-		//graficaPane.add(tchart.getBtnPanel());
-		
 		graficaPane.setLayout(null);
 		
 		contentPane.add(graficaPane);
@@ -77,14 +71,13 @@ public class AppWindow {
 		contentPane.add(panel_1);
 		
 		frame.setVisible(true);
-		//tchart.start();
 	}
 	
-	public static AppWindow getInstance() {
+	public static Pantalla getInstance() {
         return INSTANCE;
     }
 	
-	public void setTemperaturaActual(int temperatura){
+	private void setTemperaturaActual(int temperatura){
 		lTemperatura.setText(Integer.toString(temperatura)+"ºC");
 		tchart.actualizaTemperatura(temperatura);
 		actualizaMapa();
@@ -92,5 +85,10 @@ public class AppWindow {
 	
 	public void actualizaMapa(){
 		googleMaps.setIcon(gmaps.actualiza());
+	}
+
+	@Override
+	public void manejarEvento(int temperaturaActual) {
+		setTemperaturaActual(temperaturaActual);
 	}
 }

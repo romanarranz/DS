@@ -27,7 +27,7 @@ public class Simulador extends Observable implements Runnable{
 			temperaturas.add(i);
 	}
 	
-	private void actualizaTemperaturaMinMax(){
+	public void actualizaTemperaturaMinMax(){
 		if(temperaturaActual > tMax){
 			tMax = temperaturaActual;
 			temperaturas.remove(0);
@@ -40,21 +40,9 @@ public class Simulador extends Observable implements Runnable{
 			temperaturas.add(0, tMin);
 		}
 			
-		//System.out.println("tActual: "+temperaturaActual+",  tMin: "+tMin+",  tMax: "+tMax);
-		
 		temperaturas.clear();
 		for(int i = tMin; i<=tMax; i++)
 			temperaturas.add(i);
-		
-		//imprimirTemperaturas();
-	}
-	
-	private void imprimirTemperaturas(){
-		System.out.print("[");
-		for(int i = 0; i<temperaturas.size(); i++){			
-			System.out.print(temperaturas.get(i)+", ");
-		}
-		System.out.print("]\n");
 	}
 	
 	@Override
@@ -87,5 +75,10 @@ public class Simulador extends Observable implements Runnable{
 				e.printStackTrace();
 			}			
 		}
+				
+	}
+	
+	public int getTemperaturaActual(){
+		return temperaturaActual;
 	}
 }
