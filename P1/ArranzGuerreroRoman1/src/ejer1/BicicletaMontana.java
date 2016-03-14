@@ -1,8 +1,8 @@
 package ejer1;
 
 public class BicicletaMontana extends Bicicleta{
-	BicicletaMontana(TC tipo, Manillar m, Cuadro c, Ruedas r){
-		super(tipo, m, c, r);
+	BicicletaMontana(TC tipo, Manillar m, Cuadro c, Ruedas r, int numeroCorredor){
+		super(tipo, m, c, r, numeroCorredor);
 	}
 	
 	@Override

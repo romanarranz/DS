@@ -10,11 +10,9 @@ import ejer2.Simulador;
 
 public class BotonCambio extends JButton implements Observador{
 	private static final long serialVersionUID = 1L;
-	int temperaturaActual;
 	
 	public BotonCambio(Simulador s){
 		super("Actualizar");
-		temperaturaActual = 0;
 		
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

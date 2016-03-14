@@ -26,7 +26,7 @@ public class FactoriaCarreraCarretera extends FactoriaCarrera{
 			Manillar m = fm.crearManillar();
 			Ruedas r = fr.crearRuedas();
 			
-			BicicletaCarretera b = new BicicletaCarretera(tipo, m, c, r);
+			BicicletaCarretera b = new BicicletaCarretera(tipo, m, c, r, i+1);
 			participantes.add(b);
 		}
 
