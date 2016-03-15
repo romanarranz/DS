@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package GUI;
 
 import javax.swing.JButton;
@@ -25,12 +36,14 @@ public class Pantalla implements Observador{
 	private JLabel lTemperatura, googleMaps;
 	
 	private GraficaTemperatura tchart;
-	private  TiempoSatelital gmaps;
+	private TiempoSatelital gmaps;
 	private JButton run;
 	private JComboBox<String> combo;
 	private String start, stop;
 	
-	public Pantalla() {
+	private Pantalla() {
+		// <== Ventana
+		// ==================================>
 		frame = new JFrame("Monitor de Temperaturas");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 810, 645);
@@ -39,6 +52,8 @@ public class Pantalla implements Observador{
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// <== Panel de Temperatura
+		// ==================================>
 		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setForeground(Color.WHITE);
@@ -60,15 +75,21 @@ public class Pantalla implements Observador{
 	}
 	
 	public void inicializar(BotonCambio btn, Simulador s){
+		// <== Boton actualizar
+		// ==================================>
 		actualiza = btn;
 		actualiza.setBounds(110, 146, 117, 29);		
 		panel.add(actualiza);
 		
+		// <== Panel imagenes satelitales
+		// ==================================>
 		gmaps = new TiempoSatelital();
 		googleMaps = gmaps.getMapa();
 		googleMaps.setBounds(5, 5, 450, 320);
 		contentPane.add(googleMaps);
 		
+		// <== Panel grafica de temperaturas
+		// ==================================>
 		this.tchart = new GraficaTemperatura("Temperaturas");
 		graficaPane = new JPanel();
 		graficaPane.setBackground(Color.WHITE);
@@ -77,12 +98,16 @@ public class Pantalla implements Observador{
 		graficaPane.setLayout(null);
 		
 		contentPane.add(graficaPane);		
-		
+
+		// <== Panel de control de velocidad y boton para parar/continuar
+		// ==================================>
 		controlesPanel= new JPanel();
 		controlesPanel.setBackground(Color.DARK_GRAY);
 		controlesPanel.setBounds(460, 200, 345, 125);
 		
-		start = "Comenzar";
+		// <== Boton parar/continuar ejecucion
+		// ==================================>
+		start = "Continuar";
 		stop = "Parar";
 		run = new JButton(stop);
 		run.setBounds(50, 50, 110, 30);
@@ -102,6 +127,8 @@ public class Pantalla implements Observador{
 			}
 		});
 		
+		// <== Selector de velocidad
+		// ==================================>
 		combo = new JComboBox<String>();
 		combo.setBounds(180,50,120,30);
 		combo.addItem("Lento");
@@ -121,7 +148,7 @@ public class Pantalla implements Observador{
 	            }
 	        }
 		});
-				
+		
 		controlesPanel.add(run);
 		controlesPanel.add(combo);
 		controlesPanel.setLayout(null);

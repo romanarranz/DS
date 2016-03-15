@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class Tabla extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
 	private String[] nombreColumnas;
 	private ArrayList<ArrayList<Object>> datos;
 
     public Tabla() {
-    	nombreColumnas = new String[]{"#","Numero de Peticiones","Nombre","Precio Unitario","Descuento aplicado"};
+    	nombreColumnas = new String[]{"#","Numero de Peticiones","Nombre","Precio Unitario","Descuento aplicable"};
     	datos = new ArrayList<>();
     	addRow();
     }
@@ -47,5 +48,6 @@ public class Tabla extends AbstractTableModel {
 	
 	public void setDato(int i, int j, Object dato){
 		datos.get(i).set(j, dato);
+		fireTableDataChanged();
 	}
 }                    

@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package GUI;
 
 import java.io.FileOutputStream;
@@ -20,27 +31,26 @@ public class TiempoSatelital implements Observador{
 	private ArrayList<String> imagenesLista;
 	
 	public TiempoSatelital(){
-		contadorImagenes = 5;
+		contadorImagenes = 6;
 		imagenesLista = new ArrayList<String>();
-		imagenesLista.add("image0.gif");
-		imagenesLista.add("image1.gif");
-		imagenesLista.add("image2.gif");
-		imagenesLista.add("image3.gif");
-		imagenesLista.add("image4.gif");
-		imagenesLista.add("image5.gif");
+		imagenesLista.add("imagenes/image0.gif");
+		imagenesLista.add("imagenes/image1.gif");
+		imagenesLista.add("imagenes/image2.gif");
+		imagenesLista.add("imagenes/image3.gif");
+		imagenesLista.add("imagenes/image4.gif");
+		imagenesLista.add("imagenes/image5.gif");
 		
-		// captaYGuardaImagen();
-		// label = new JLabel(new ImageIcon((new ImageIcon("image"+contadorImagenes+".jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH)));
 		label = new JLabel(new ImageIcon((new ImageIcon(imagenesLista.get(0))).getImage().getScaledInstance(500, 370,java.awt.Image.SCALE_SMOOTH)));
 	}
 	
 	// Metodo para captar y guardar imagenes de google
 	private void captaYGuardaImagen(){
+		
 		// No queremos mas de 10 imagenes de satelites en la carpeta
 		if(contadorImagenes<10){
 			try {
 	            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center=Madrid,Spain&zoom=6&size=800x800&maptype=hybrid&key=ABQIAAAAgb5KEVTm54vkPcAkU9xOvBR30EG5jFWfUzfYJTWEkWk2p04CHxTGDNV791-cU95kOnweeZ0SsURYSA&format=jpg";
-	            String destinationFile = "image"+contadorImagenes+".jpg";
+	            String destinationFile = "imagenes/image"+contadorImagenes+".jpg";
 	            URL url = new URL(imageUrl);
 	            InputStream is = url.openStream();
 	            OutputStream os = new FileOutputStream(destinationFile);

@@ -21,14 +21,14 @@ public class AppWindow {
 		frame = new JFrame("Configuracion de Equipos");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setBounds(100, 100, 494, 228);
+		frame.setBounds(100, 100, 600, 228);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		
 		contentPane.setLayout(new BorderLayout(0, 0));
         
-		model = new Tabla();
+		model = new Tabla();		
 		table = new JTable(model);
 
 		scroll = new JScrollPane(table);

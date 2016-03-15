@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package ejer2;
 
 import java.util.ArrayList;
@@ -27,26 +38,32 @@ public class Simulador extends Observable implements Runnable{
 		// refrescamos cada segundo 
 		tRefresco = 1000;
 		
+		// añadimos todo el intervalo de temperaturas, desde tMin hasta tMax
 		for(int i = tMin; i<tMax; i++)
 			temperaturas.add(i);
 	}
 	
+	// detener la ejecucion de la hebra
 	public void parar(){
 		running = false;
 	}
-	
+
+	// reanudar la ejecucion de la hebra
 	public void comenzar(){
 		running = true;
 	}
-	
+
+	// realizar una toma de temperaturas cada cuarto de segundo aprox
 	public void refrescoMuyRapido(){
 		tRefresco = 256;
 	}
-	
+
+	// realizar una toma de temperaturas cada medio segundo
 	public void refrescoRapido(){
 		tRefresco = 500;
 	}
 	
+	// realizar una toma de temperaturas cada segundo
 	public void refrescoLento(){
 		tRefresco = 1000;
 	}
@@ -68,11 +85,13 @@ public class Simulador extends Observable implements Runnable{
 		for(int i = tMin; i<=tMax; i++)
 			temperaturas.add(i);
 	}
-	
+
+	// cuerpo de ejecucion de la hebra
 	@Override
 	public void run(){
 		Integer minutos = 0 , segundos = 0, milesimas = 0;
 		while (running){
+			// nueva toma de temperatura, aleatoria entre grado arriba y grado abajo 
 			temperaturaActual = randInt(tMin-1, tMax+1);			
 			
 			try {
@@ -80,13 +99,13 @@ public class Simulador extends Observable implements Runnable{
     		    //Incrementamos 4 milesimas de segundo
     		    milesimas += 4;
     		    
+    		    // Cada vez que transcurra el tiempo de refresco
     		    if(milesimas%tRefresco == 0){
 		    		actualizaTemperaturaMinMax();
 		    		notificar(temperaturaActual);
 		    	}
     		    
-    		    //Cuando llega a 1000 osea 1 segundo aumenta 1 segundo
-    		    //y las milesimas de segundo de nuevo a 0
+    		    //Cuando llega a 1000 osea 1 segundo aumentamos 1 segundo y las milesimas de segundo de nuevo a 0
     		    if( milesimas == 1000 ) {    		    	    		   
     		    	
     		    	milesimas = 0;

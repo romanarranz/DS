@@ -77,8 +77,5 @@ public class Cliente implements Runnable{
 			  if(Cliente.contadorHebras > Cliente.totalHebras-Cliente.totalClientes)
 				  running = false;
 		}
-		  
-		// Imprimimos cuantas hebras han acabado
-		System.out.println("Han acabado "+contadorHebrasPersonal+" hebras del idCliente "+idCliente);
 	}
 }

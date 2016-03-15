@@ -1,4 +1,15 @@
-package model;
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 4
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
+package ejer4;
 
 import java.util.Random;
 
@@ -25,9 +36,9 @@ public class Deposito implements Filtro {
 		
 		int depAux = randInt(0, auxI);
 		
-		if(depAux > auxI / 2)
+		if(depAux > (auxI/2))
 			d = 1.0;
-		else if(depAux > auxI / 4)
+		else if(depAux > (auxI/4))
 			d = 2.0;
 		else
 			d = 0.0;
@@ -37,9 +48,9 @@ public class Deposito implements Filtro {
 
 	@Override
 	public String toString(Object o) {
-		
-		double dep = ejecutar(o);
+				
 		String msg = "Deposito: ";
+		double dep = ejecutar(o);
 		
 		if(dep == 0.0)
 			msg += "Vacio";

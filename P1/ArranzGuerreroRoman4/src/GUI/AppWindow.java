@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 4
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package GUI;
 
 import java.awt.event.WindowAdapter;

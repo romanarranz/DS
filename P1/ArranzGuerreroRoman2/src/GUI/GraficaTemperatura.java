@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package GUI;
 
 import java.util.ArrayList;
@@ -43,33 +54,39 @@ public class GraficaTemperatura implements Observador{
 		
 		t = getTiempo();
 		
-		//final DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(1, COUNT, new Second());
+		// serie de datos como serie dinamica, para que se pueda actualizar en el tiempo
 		dataset = new DynamicTimeSeriesCollection(1, muestras, new Second());
 		dataset.setTimeBase(new Second(t.get(0), t.get(1), t.get(2), t.get(3), t.get(4), t.get(5)));
-		dataset.addSeries(generateData(), 0, nombreSerie);
+		dataset.addSeries(crearDatosIniciales(), 0, nombreSerie);
 		
-		JFreeChart chart = createChart(dataset);
-
+		JFreeChart chart = crearGrafica(dataset);
 		panelGraficos = new ChartPanel(chart);
 		panelGraficos.setBounds(0, 0, 800, 285);
 	}
 	
-	private float[] generateData() {
+	// metodo que crea la primera muestra de la aplicacion
+	private float[] crearDatosIniciales() {
 	    float[] a = new float[muestras];
 	    for (int i = 0; i < a.length; i++) {
 	    	a[i] = 0;
 	    }
-	
+	    
 	    return a;
 	}
 	
-	private JFreeChart createChart(final XYDataset dataset) {
+	// metodo para crear un JFreeChart a traves de una serie de muestras
+	private JFreeChart crearGrafica(final XYDataset dataset) {
 	    final JFreeChart result = ChartFactory.createTimeSeriesChart(
 	        tituloGrafica, t.get(3)+"/"+t.get(4)+"/"+t.get(5), "Temperaturas", dataset, true, true, false
 	    );
+	    
 	    final XYPlot plot = result.getXYPlot();
+	    
+	    // dominio en el eje X es variable, porque se ira actualizando en funcion del tiempo
 	    ValueAxis domain = plot.getDomainAxis();
 	    domain.setAutoRange(true);
+	    
+	    // rango de la serie de datos en el eje y
 	    ValueAxis range = plot.getRangeAxis();
 	    range.setRange(minYAxis, maxYAxis);
 	
@@ -84,7 +101,10 @@ public class GraficaTemperatura implements Observador{
 		return btnPanel;
 	}
 	
+	// obtener el timpo actual en un array de forma [sec,min,hora,dia,mes,anio]  
 	private ArrayList<Integer> getTiempo(){
+
+		// seleccionamos como region Europa/Madrid y el idioma español como referencia de partida
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"), new Locale("es","es"));
 		int sec = cal.get(Calendar.SECOND);
 		int min = cal.get(Calendar.MINUTE);
@@ -109,10 +129,11 @@ public class GraficaTemperatura implements Observador{
 		
 		float[] newData = new float[1];
 		newData[0] = temperaturaActual;
-
-		// Imprimo cuando será la proxima actualizacion de la serie
-		// System.out.println("dataset1 : " + dataset.advanceTime());
+		
+		// avanzamos la serie en el tiempo, eje x
         dataset.advanceTime();
+        
+        // añadimos a la serie de datos el nuevo dato, en este caso la temperaturaActual
         dataset.appendData(newData);
 	}
 

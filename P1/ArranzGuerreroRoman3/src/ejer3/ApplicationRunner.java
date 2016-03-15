@@ -21,7 +21,7 @@ public class ApplicationRunner {
 		// Definicion las distintas configuraciones de equipos
 		Equipo e1 = new Tarjeta("NVidia GTX 250", 290, 10, 200.0);
 		Equipo e2 = new Bus("USB 2.0", 10, 10, 12.0);
-		Equipo e3 = new Disco("Seagate 6000", 120, 10, 70.0);
+		Equipo e3 = new Disco("Seagate 6000", 85, 10, 70.0);
 		
 		// Añadimos los componentes de la configuracion de equipo
 		configuracionEquipo1.add(e1);		
@@ -36,7 +36,7 @@ public class ApplicationRunner {
 		AppWindow ventana = AppWindow.getInstance();
 		
 		// Generamos aleatoriamente un tipo de cliente
-		Cliente c1 = new Cliente(0, TipoCliente.crear(randInt(0,2)), configuracionEquipo1, ventana );
+		Cliente c1 = new Cliente(0, TipoCliente.crear(randInt(0,2)), configuracionEquipo1, ventana);
 		Cliente c2 = new Cliente(1, TipoCliente.crear(randInt(0,2)), configuracionEquipo2, ventana);
 		Cliente c3 = new Cliente(2, TipoCliente.crear(randInt(0,2)), configuracionEquipo3, ventana);
 		Cliente c4 = new Cliente(3, TipoCliente.crear(randInt(0,2)), configuracionEquipo3, ventana);
