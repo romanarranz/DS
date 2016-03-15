@@ -5,7 +5,7 @@ Prácticas de la asignatura Desarrollo de Software cursada en el Grado en Inform
 
 ----------
 
-Glosario de Prácticas
+Índice de Prácticas
 -------------
 #### Práctica 1: Implementación de distintos patrones de diseño
 En esta práctica se aborda tanto el diseño como la implementación de diferentes patrones de diseño.
