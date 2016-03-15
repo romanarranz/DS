@@ -1,9 +1,21 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package ejer1;
 
+// Tipo de carrera
 public enum TC {
-	CARRETERA(0), MONTANA(1);
-	
+	CARRETERA(0), MONTANA(1);	
 	protected int tipo;
+	
 	TC(int tipo){
 		this.tipo = tipo;
 	}

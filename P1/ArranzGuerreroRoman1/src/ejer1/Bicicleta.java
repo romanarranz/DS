@@ -1,5 +1,17 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package ejer1;
 
+// Producto Bicicleta general, que se compone de forma general de manillar ruedas y cuadro
 public abstract class Bicicleta extends Thread{
 	protected TC tipo = null;
 	protected Manillar m;
@@ -27,14 +39,17 @@ public abstract class Bicicleta extends Thread{
 		return km;
 	}
 	
+	// detener la ejecucion de la hebra
 	public void parar(){
 		running = false;
 	}
 	
+	// cuerpo de ejecucion de la hebra
 	@Override
 	public void run(){
 		try {
 			while(running){
+				// parar la hebra aleatoriamente
 				Thread.sleep((long) ((Math.random()*1)*1000));
 				km++;
 			}

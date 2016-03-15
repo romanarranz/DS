@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package GUI;
 
 import javax.swing.JFrame;
@@ -6,9 +17,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextPane;
 
 public class AppWindow {
+	// Singleton
+	private static AppWindow INSTANCE = new AppWindow();
 
 	private JPanel contentPane;
 	private JFrame frame; 
@@ -17,7 +29,10 @@ public class AppWindow {
 	  			   carreteraEnCabeza, carreteraGanador, carreteraKM,
 	  			   participantesMontana, participantesCarretera;
 	
-	public AppWindow() {
+	private AppWindow() {
+		
+		// <== Ventana
+		// ==========================================>
 		frame = new JFrame("Carrera de bicicletas");
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,6 +42,8 @@ public class AppWindow {
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// <== Panel de la izquierda
+		// ==========================================>
 		JPanel panelIzq = new JPanel();
 		panelIzq.setBackground(Color.WHITE);
 		panelIzq.setBounds(6, 83, 213, 189);
@@ -57,6 +74,8 @@ public class AppWindow {
 		participantesMontana.setBounds(6, 66, 201, 16);
 		panelIzq.add(participantesMontana);
 		
+		// <== Panel de la derecha
+		// ==========================================>
 		JPanel panelDer = new JPanel();
 		panelDer.setBackground(Color.WHITE);
 		panelDer.setBounds(222, 83, 222, 189);
@@ -87,6 +106,8 @@ public class AppWindow {
 		participantesCarretera.setBounds(6, 65, 210, 16);
 		panelDer.add(participantesCarretera);
 		
+		// <== Panel del cronometro
+		// ==========================================>
 		JPanel panelCronometro = new JPanel();
 		panelCronometro.setBackground(Color.DARK_GRAY);
 		panelCronometro.setBounds(6, 6, 438, 74);
@@ -105,7 +126,7 @@ public class AppWindow {
 	public void setCrono(String text){
 		crono.setText(text);
 	}
-	
+	 
 	public void setCrono(int segundos){
 		crono.setText(Integer.toString(segundos)+"s");
 	}
@@ -119,7 +140,7 @@ public class AppWindow {
 	}
 	
 	public void setMontanaGanador(int ganador){
-		montanaGanador.setText("Ganador: Bicicleta"+ganador);
+		montanaGanador.setText("Ganador: Bicicleta "+ganador);
 	}
 	
 	public void setParticipantesMontana(int activos, int total){
@@ -135,10 +156,15 @@ public class AppWindow {
 	}
 
 	public void setCarreteraGanador(int ganador){
-		carreteraGanador.setText("Ganador: Bicicleta"+ganador);
+		carreteraGanador.setText("Ganador: Bicicleta "+ganador);
 	}
 	
 	public void setParticipantesCarretera(int activos, int total){
 		participantesCarretera.setText("Participantes: "+Integer.toString(activos)+"/"+Integer.toString(total));
 	}
+	
+	// obtener instancia de la ventana siguiendo el patron singleton
+	public static AppWindow getInstance() {
+        return INSTANCE;
+    }
 }

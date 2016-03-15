@@ -1,7 +1,19 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package ejer1;
 
 import java.util.ArrayList;
 
+// Factoria especifica de carrera
 public class FactoriaCarreraCarretera extends FactoriaCarrera{
 	
 	private int cantidadBicicletas;
@@ -12,6 +24,7 @@ public class FactoriaCarreraCarretera extends FactoriaCarrera{
 	public FactoriaCarreraCarretera(int n){
 		cantidadBicicletas = n;
 		
+		// seleccionamos las factorias especificas de nuestros productos
 		fc = new FactoriaCuadroCarretera();
 		fm = new FactoriaManillarCarretera();
 		fr = new FactoriaRuedasCarretera();
@@ -22,6 +35,8 @@ public class FactoriaCarreraCarretera extends FactoriaCarrera{
 		ArrayList<Bicicleta> participantes = new ArrayList<>();
 		
 		for(int i = 0; i<cantidadBicicletas; i++){
+			
+			// llamamos a los metodos de creacion de cada factoria especifica
 			Cuadro c = fc.crearCuadro();
 			Manillar m = fm.crearManillar();
 			Ruedas r = fr.crearRuedas();

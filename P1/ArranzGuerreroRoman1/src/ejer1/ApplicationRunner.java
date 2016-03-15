@@ -1,3 +1,14 @@
+/**
+ * Universidad de Granada - Grado en Informatica : 2016  
+ * 
+ * Asignatura: Desarrollo de Software
+ * Practica 1 - Ejercicio 1
+ * 
+ * @author Roman Arranz Guerrero
+ * @email roarrgue@gmail.com
+ * 
+ */
+
 package ejer1;
 
 import java.util.ArrayList;
@@ -6,7 +17,8 @@ import java.util.Random;
 import GUI.AppWindow;
 
 public class ApplicationRunner {
-		
+	
+	// Metodo para obtener un numero aleatorio entre min y max  
 	private static int randInt(int min, int max) {
 	    Random rand = new Random();
 	    int randomNum = rand.nextInt((max - min) + 1) + min;
@@ -14,9 +26,11 @@ public class ApplicationRunner {
 	    return randomNum;
 	}
 	
+	// Metodo para saber quien lidera la tanda de participantes de una carrera
 	private static int enCabeza(ArrayList<Bicicleta> participantes){
 		int enCabeza = 0, max = 0;
 		for(int i = 0; i<participantes.size(); i++){
+			// El que tenga mayor kilometraje es el que ira en cabeza
 			if(participantes.get(i).getKM() > max){
 				max = participantes.get(i).getKM();
 				enCabeza = i;
@@ -26,11 +40,16 @@ public class ApplicationRunner {
 		return enCabeza;
 	}
 	
+	// Metodo para construir el cuerpo de una hebra de carrera y que inicia las carreras
 	public static Runnable empezarCarrera(ArrayList<Bicicleta> participantes, int timeToDeath, AppWindow gui){
 		int accidentes, totalParticipantes;
+
+		// Si el participante tiene una bicicleta de montaña la carrera será de montaña
 		String tipoCarrera = participantes.get(0).getTipo().toString();
 		
 		totalParticipantes = participantes.size();
+
+		// Actualizamos la interfaz grafica con el mismo numero de participantes en ambas carreras 
 		gui.setParticipantesCarretera(totalParticipantes, totalParticipantes);
 		gui.setParticipantesMontana(totalParticipantes, totalParticipantes);
 		
@@ -67,12 +86,13 @@ public class ApplicationRunner {
 			    		    // Actualizamos los segundos de la GUI
 			    		    gui.setCrono(segundos);
 			    		    
-			    		    // Actualizamos quien va en cabeza
+			    		    // Actualizamos quien va en cabeza de la carrera de Carretera
 		    		    	if(tipoCarrera == "CARRETERA"){
 		    		    		primero = enCabeza(participantes);
 		    		    		gui.setCarreteraEnCabeza(primero);
 		    		    		gui.setCarreteraKM(participantes.get(primero).getKM());
-		    		    	}		    		    	
+		    		    	}
+			    		    // Actualizamos quien va en cabeza en la carrera de Montaña
 		    		    	else {
 		    		    		primero = enCabeza(participantes);
 		    		    		gui.setMontanaEnCabeza(primero);
@@ -84,14 +104,11 @@ public class ApplicationRunner {
 		    		    		for(int i = participantes.size()-accidentes; i<participantes.size(); i++)
 		    		    			participantes.remove(i);
 		    		    		
-		    		    		if(tipoCarrera == "CARRETERA"){
-		    		    			gui.setParticipantesCarretera(participantes.size(), totalParticipantes);
-		    		    			System.out.println("CARRETERA "+participantes.size()+"/"+totalParticipantes);
-		    		    		}
-		    		    		else{
+		    		    		if(tipoCarrera == "CARRETERA")
+		    		    			gui.setParticipantesCarretera(participantes.size(), totalParticipantes);		    		    		
+		    		    		else
 		    		    			gui.setParticipantesMontana(participantes.size(), totalParticipantes);
-		    		    			System.out.println("MONTANA "+participantes.size()+"/"+totalParticipantes);
-		    		    		}
+		    		    		
 		    		    	}
 		    		    	//Si los segundos llegan a 60 entonces aumenta 1 los minutos
 		    		    	//y los segundos vuelven a 0
@@ -124,7 +141,7 @@ public class ApplicationRunner {
 	}
 	
 	public static void main(String[] args) {
-		AppWindow gui = new AppWindow();
+		AppWindow gui = AppWindow.getInstance();
 		
 		// El mismo numero de bicicletas para ambas carreras
 		int cantidadBicicletas = randInt(1,30);
