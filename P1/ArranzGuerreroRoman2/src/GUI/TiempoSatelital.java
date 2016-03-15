@@ -31,7 +31,7 @@ public class TiempoSatelital implements Observador{
 		
 		// captaYGuardaImagen();
 		// label = new JLabel(new ImageIcon((new ImageIcon("image"+contadorImagenes+".jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH)));
-		label = new JLabel(new ImageIcon((new ImageIcon(imagenesLista.get(0))).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH)));
+		label = new JLabel(new ImageIcon((new ImageIcon(imagenesLista.get(0))).getImage().getScaledInstance(500, 370,java.awt.Image.SCALE_SMOOTH)));
 	}
 	
 	// Metodo para captar y guardar imagenes de google
@@ -75,7 +75,7 @@ public class TiempoSatelital implements Observador{
 	
 	public ImageIcon actualiza(){
 		String imagenSeleccionada = imagenesLista.get(randInt(0,imagenesLista.size()-1));
-		return new ImageIcon((new ImageIcon(imagenSeleccionada)).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH));
+		return new ImageIcon((new ImageIcon(imagenSeleccionada)).getImage().getScaledInstance(500, 370,java.awt.Image.SCALE_SMOOTH));
 	}
 
 	@Override

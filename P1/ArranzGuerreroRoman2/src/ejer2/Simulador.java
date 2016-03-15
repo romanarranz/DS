@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Simulador extends Observable implements Runnable{
-	ArrayList<Integer> temperaturas;
-	int temperaturaActual;
-	int tMin, tMax;
-	boolean running;
+	private ArrayList<Integer> temperaturas;
+	private int temperaturaActual;
+	private int tMin, tMax;
+	private boolean running;
+	private int tRefresco;
 	
 	private static int randInt(int min, int max) {
 	    Random rand = new Random();
@@ -22,9 +23,32 @@ public class Simulador extends Observable implements Runnable{
 		tMin = temperaturaMinima;
 		tMax = temperaturaMaxima;
 		temperaturas = new ArrayList<Integer>();
+
+		// refrescamos cada segundo 
+		tRefresco = 1000;
 		
 		for(int i = tMin; i<tMax; i++)
 			temperaturas.add(i);
+	}
+	
+	public void parar(){
+		running = false;
+	}
+	
+	public void comenzar(){
+		running = true;
+	}
+	
+	public void refrescoMuyRapido(){
+		tRefresco = 256;
+	}
+	
+	public void refrescoRapido(){
+		tRefresco = 500;
+	}
+	
+	public void refrescoLento(){
+		tRefresco = 1000;
 	}
 	
 	public void actualizaTemperaturaMinMax(){
@@ -56,13 +80,17 @@ public class Simulador extends Observable implements Runnable{
     		    //Incrementamos 4 milesimas de segundo
     		    milesimas += 4;
     		    
+    		    if(milesimas%tRefresco == 0){
+		    		actualizaTemperaturaMinMax();
+		    		notificar(temperaturaActual);
+		    	}
+    		    
     		    //Cuando llega a 1000 osea 1 segundo aumenta 1 segundo
     		    //y las milesimas de segundo de nuevo a 0
-    		    if( milesimas == 1000 ) {
+    		    if( milesimas == 1000 ) {    		    	    		   
+    		    	
     		    	milesimas = 0;
-    		    	segundos += 1;
-    		    	actualizaTemperaturaMinMax();
-    		    	notificar(temperaturaActual);
+    		    	segundos += 1;    		    	
     		    	
     		    	if( segundos == 60 ) {
     		    		segundos = 0;

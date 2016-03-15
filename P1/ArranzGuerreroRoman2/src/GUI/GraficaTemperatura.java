@@ -1,15 +1,10 @@
 package GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -25,13 +20,9 @@ import ejer2.Observador;
 public class GraficaTemperatura implements Observador{
 	
 	private String tituloGrafica;
-    private String start;
-    private String stop;
     private float minYAxis;
     private float maxYAxis;
     private int muestras;
-    private int fastUpdate = 100;
-    private int slowUpdate = fastUpdate* 20;
    
     private ChartPanel panelGraficos;
     private JPanel btnPanel; 
@@ -42,8 +33,6 @@ public class GraficaTemperatura implements Observador{
     private DynamicTimeSeriesCollection dataset;
 	public GraficaTemperatura(final String nombreSerie) {
 		tituloGrafica = "Monitor Temperaturas Cº";
-		start = "Comenzar";
-		stop = "Parar";
 		
 		// valores del eje y, desde el 0 al 50
 		minYAxis = 0;
@@ -61,43 +50,8 @@ public class GraficaTemperatura implements Observador{
 		
 		JFreeChart chart = createChart(dataset);
 
-		final JButton run = new JButton(stop);
-		
-		run.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String cmd = e.getActionCommand();
-				if (stop.equals(cmd)) {
-					//timer.stop();
-					run.setText(start);
-				} else {
-					//timer.start();
-					run.setText(stop);
-				}
-			}
-		});
-
-		final JComboBox<String> combo = new JComboBox<String>();
-		combo.addItem("Lento");
-		combo.addItem("Rapido");		
-		combo.addActionListener(new ActionListener() {	        
-			@Override
-	        public void actionPerformed(ActionEvent e) {
-	            if ("Rapido".equals(combo.getSelectedItem())) {
-	            	//timer.setDelay(FAST);
-	            	System.out.println(fastUpdate+"fast");
-	            } else {
-	                //timer.setDelay(SLOW);
-	            	System.out.println(slowUpdate+"slow");
-	            }
-	        }
-		});
-
 		panelGraficos = new ChartPanel(chart);
-		panelGraficos.setBounds(0, 0, 336, 415);
-		btnPanel = new JPanel();
-		btnPanel.add(run);
-		btnPanel.add(combo);
+		panelGraficos.setBounds(0, 0, 800, 285);
 	}
 	
 	private float[] generateData() {

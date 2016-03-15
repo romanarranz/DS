@@ -20,7 +20,7 @@ public class ApplicationRunner {
 		s.incluirObservador(g);
 		s.incluirObservador(b);
 		
-		appWindow.inicializar(b);
+		appWindow.inicializar(b,s);
 		
 		Thread t1 = new Thread(s);
 		t1.start();
