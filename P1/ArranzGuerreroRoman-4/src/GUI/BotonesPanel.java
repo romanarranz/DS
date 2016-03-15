@@ -27,59 +27,73 @@ import javax.swing.JLabel;
 public class BotonesPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private JToggleButton TurnOnButton;
-	private JButton SpeedUpButton;
+	private JToggleButton encenderApagar;
+	private JButton acelerar;
 
 	public BotonesPanel() {
 		setBackground(new Color(240,240,240));
 		this.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY, Color.WHITE));
-		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
 		
-		JLabel lblState= new JLabel("APAGADO");
-		springLayout.putConstraint(SpringLayout.SOUTH, lblState, 54, SpringLayout.NORTH, this);
-		lblState.setVerticalAlignment(SwingConstants.TOP);
-		springLayout.putConstraint(SpringLayout.NORTH, lblState, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblState, 0, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblState, 0, SpringLayout.EAST, this);
-		lblState.setHorizontalAlignment(SwingConstants.CENTER);
-		lblState.setForeground(Color.RED);
-		lblState.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.LIGHT_GRAY));
-		add(lblState);
+		SpringLayout spLayout = new SpringLayout();
+		this.setLayout(spLayout);
 		
-		TurnOnButton = new JToggleButton("Encender");
-		springLayout.putConstraint(SpringLayout.SOUTH, TurnOnButton, -29, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, TurnOnButton, -233, SpringLayout.EAST, this);
-		TurnOnButton.setForeground(Color.RED);
-		add(TurnOnButton);
+		JLabel estado= new JLabel("APAGADO");		
+		estado.setVerticalAlignment(SwingConstants.TOP);
+		estado.setHorizontalAlignment(SwingConstants.CENTER);
+		estado.setForeground(Color.RED);
+		estado.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.LIGHT_GRAY));
 		
-		TurnOnButton.addActionListener(new ActionListener() {
+		spLayout.putConstraint(SpringLayout.SOUTH, estado, 54, SpringLayout.NORTH, this);
+		spLayout.putConstraint(SpringLayout.WEST, estado, 0, SpringLayout.WEST, this);
+		spLayout.putConstraint(SpringLayout.EAST, estado, 0, SpringLayout.EAST, this);
+		spLayout.putConstraint(SpringLayout.NORTH, estado, 10, SpringLayout.NORTH, this);	
+			
+		// añado el label del estado del vehiculo
+		this.add(estado);
+		
+		encenderApagar = new JToggleButton("Encender");
+		encenderApagar.setForeground(Color.RED);
+		
+		spLayout.putConstraint(SpringLayout.SOUTH, encenderApagar, -29, SpringLayout.SOUTH, this);
+		spLayout.putConstraint(SpringLayout.EAST, encenderApagar, -233, SpringLayout.EAST, this);
+		
+		// añado boton de encendido apagado para el vehiculo
+		this.add(encenderApagar);
+		
+		// cuando se presione el boton de encedido/apagado
+		encenderApagar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(TurnOnButton.isSelected()) {
-					TurnOnButton.setForeground(new Color(255,255,255));
-					lblState.setText("ENCENDIDO");
-					SpeedUpButton.setEnabled(true);
+				// si estaba seleccionado
+				if(encenderApagar.isSelected()) {
+					encenderApagar.setForeground(new Color(255,255,255));
+					estado.setText("ENCENDIDO");
+					acelerar.setEnabled(true);
 				}
 				else {
-					TurnOnButton.setForeground(Color.RED);
-					lblState.setText("APAGADO");
-					SpeedUpButton.setEnabled(false);
+					encenderApagar.setForeground(Color.RED);
+					estado.setText("APAGADO");
+					acelerar.setEnabled(false);
 				}
 			}
 		});
 		
-		SpeedUpButton = new JButton("Acelerar");
-		springLayout.putConstraint(SpringLayout.NORTH, SpeedUpButton, 0, SpringLayout.NORTH, TurnOnButton);
-		springLayout.putConstraint(SpringLayout.WEST, SpeedUpButton, 22, SpringLayout.EAST, TurnOnButton);
-		SpeedUpButton.setEnabled(false);
-		add(SpeedUpButton);
+		acelerar = new JButton("Acelerar");
 		
-		SpeedUpButton.addActionListener(new ActionListener() {
+		spLayout.putConstraint(SpringLayout.NORTH, acelerar, 0, SpringLayout.NORTH, encenderApagar);		
+		spLayout.putConstraint(SpringLayout.WEST, acelerar, 22, SpringLayout.EAST, encenderApagar);
+		
+		acelerar.setEnabled(false);
+		
+		// añadimos el boton de acelerar
+		this.add(acelerar);
+		
+		// cuando se pulse sobre el boton de acelerar
+		acelerar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(TurnOnButton.isSelected()) {
-					lblState.setText("ACELERANDO");
+				if(encenderApagar.isSelected()) {
+					estado.setText("ACELERANDO");
 				}
 			}
 		});
