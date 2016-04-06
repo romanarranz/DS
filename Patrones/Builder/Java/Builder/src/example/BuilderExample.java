@@ -12,5 +12,18 @@ public class BuilderExample {
 	    waiter.constructPizza();
 
 	    Pizza pizza = waiter.getPizza();
+	    System.out.println("Hawaiian Pizza");
+	    System.out.println("\tSauce: "+pizza.getSauce());
+	    System.out.println("\tTopping: "+pizza.getTopping());
+	    System.out.println("\tDough: "+pizza.getDough());	 
+	    
+	    waiter.setPizzaBuilder( spicy_pizzabuilder );
+	    waiter.constructPizza();
+	    pizza = waiter.getPizza();
+	    System.out.println("Spicy Pizza");
+	    System.out.println("\tSauce: "+pizza.getSauce());
+	    System.out.println("\tTopping: "+pizza.getTopping());
+	    System.out.println("\tDough: "+pizza.getDough());	 
+	    
 	}
 }
