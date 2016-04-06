@@ -28,7 +28,8 @@ Acerca de la clase y composición de objetos. La creación de clases usan la her
 - **Adaptador:** Diferentes clases tienen la misma interfaz.
 - **Puente (Bridge):** Separan la interfaz de los objetos de su implementación.
 - **Compuesto (Composite):** Una estructura de árbol de objetos simples y compuestos.
-- **Decorador (Decorator):** Añade responsabilidades a los objetos de forma dinámica.
+- **Delegacion (Delegation):** Cuando un objeto de cara al exterior expresa cierto comportamiento pero en realidad delega la responsabilidad en otro.
+- **Decorador (Decorator):** Añade responsabilidades a los objetos de forma dinámica. Es como delegacion pero más flexible y fuertemente tipada.
 - **Fachada:** Una única clase que representa un subsistema.
 - **Peso Mosca (Flyweight):** Cuando tenemos una clase muy pesada y queremos instanciarla varias veces con algún cambio en los objetos que la instancian.
 - **Inmutable (Private Class Data):** Restringe el acceso ya que hace la clase solo lectura.
