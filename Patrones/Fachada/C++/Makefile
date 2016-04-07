@@ -30,38 +30,34 @@ CPPFLAGS = -Wall -std=c++11 -g -I$(INC) -O3 -c
 MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIR = $(lastword $(notdir $(patsubst %/,%,$(dir $(MAKEFILE_PATH)))))
 
-all: $(BIN)/builder
+all: $(BIN)/fachada
 
 # ************ Ejecutables ************
 
-$(BIN)/builder: $(OBJ)/builder.o $(OBJ)/waiter.o $(OBJ)/pizza.o $(OBJ)/pizzabuilder.o $(OBJ)/spicypizzabuilder.o $(OBJ)/hawaiianpizzabuilder.o
-	@echo "Creando ./bin/builder..."
+$(BIN)/fachada: $(OBJ)/fachada.o $(OBJ)/line.o $(OBJ)/point.o $(OBJ)/pointcarte.o $(OBJ)/pointpolar.o
+	@echo "Creando ./bin/fachada..."
 	@$(CXX) -o $@ $^
 
 # ************ Objetos ************
 
-$(OBJ)/builder.o: $(SRC)/main.cpp
-	@echo "Creando ./obj/builder.o..."
+$(OBJ)/fachada.o: $(SRC)/main.cpp
+	@echo "Creando ./obj/fachada.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/waiter.o: $(SRC)/waiter.cpp
-	@echo "Creando ./obj/waiter.o..."
+$(OBJ)/line.o: $(SRC)/Line.cpp
+	@echo "Creando ./obj/line.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/pizza.o: $(SRC)/pizza.cpp
-	@echo "Creando ./obj/pizza.o..."
+$(OBJ)/point.o: $(SRC)/Point.cpp
+	@echo "Creando ./obj/point.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/pizzabuilder.o: $(SRC)/pizzabuilder.cpp
-	@echo "Creando ./obj/pizzabuilder.o..."
+$(OBJ)/pointcarte.o: $(SRC)/Pointcarte.cpp
+	@echo "Creando ./obj/pointcarte.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/spicypizzabuilder.o: $(SRC)/spicypizzabuilder.cpp
-	@echo "Creando ./obj/spicypizzabuilder.o..."
-	@$(CXX) $(CPPFLAGS) $< -o $@
-
-$(OBJ)/hawaiianpizzabuilder.o: $(SRC)/hawaiianpizzabuilder.cpp
-	@echo "Creando ./obj/hawaiianpizzabuilder.o..."
+$(OBJ)/pointpolar.o: $(SRC)/Pointpolar.cpp
+	@echo "Creando ./obj/pointpolar.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
 .PHONY: clean zip tar

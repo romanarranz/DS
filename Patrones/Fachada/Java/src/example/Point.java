@@ -25,7 +25,8 @@ public class Point {
 	    // 4. Wrapper maps
 	    pp.rotate( angle );
 	    System.out.println( "  PointPolar is " + pp );
-	    String str = pp.toString();  int i = str.indexOf( '@' );
+	    String str = pp.toString();
+	    int i = str.indexOf( '@' );
 	    double r = Double.parseDouble( str.substring(1,i) );
 	    double a = Double.parseDouble( str.substring(i+1,str.length()-1) );
 	    pc = new PointCarte(

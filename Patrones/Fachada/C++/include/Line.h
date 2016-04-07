@@ -1,20 +1,23 @@
-#ifndef __LINE__
-#define __LINE__
+#ifndef LINE_H
+#define LINE_H
 
+#include <Point.h>
+
+#include <iostream>
 #include <string.h>
 
 using namespace std;
 
-class Line {
-	
+class Line
+{
 	private:
-		Point * o, * e;
-	
+  		Point *o, *e;
+
 	public:
-		Line( const Point & ori, const Point & end );	
-		void move( const int & dx, const int & dy );	
-		void rotate( const int & angle );	
-		string toString();
+  		Line(Point * ori, Point * end );
+  		void move( const int & dx, const int & dy );
+  		void rotate( const int & ang );
+  		string toString();
 };
 
 #endif

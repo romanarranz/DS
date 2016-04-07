@@ -1,24 +1,24 @@
-#ifndef __POINT_CARTE__
-#define __POINT_CARTE__
+#ifndef POINT_CARTE_H
+#define POINT_CARTE_H
 
+#include <iostream>
 #include <string.h>
 
 using namespace std;
 
-//1. Subsystem
-class PointeCarte
+//1. Subsystemw
+class PointCarte
 {
 	private:
-		double x, y;
+		double x,y;
 
 	public:
-		PointeCarte(const double & xx, const double & yy);
+		PointCarte(const double & xx, const double & yy);
 		void move(const int & dx, const int & dy);
 		string toString();
+
 		double getX();
 		double getY();
-
-		~PointeCarte();
 };
 
 #endif
