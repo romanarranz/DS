@@ -13,6 +13,11 @@ El cliente necesita una interfaz sencilla para acceder a la funcionalidad genera
 
 Encapsula un subsistema complejo dentro de un único objeto interfaz. esto reduce el hecho de conocer bien al subsistema. Si la fchada es el único puente con el subsistema limitará las características y fleixibilidad que los clientes avanzados podrían utilizar.
 
+##Estructura
+
+###Ejemplo Extenso
+![imagen1](./facade.png)
+
 ##Verificación
 
 1. Identificar una interfaz más sencilla que unifique el subsistema o componente.
