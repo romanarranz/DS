@@ -1,7 +1,8 @@
 package example;
 
+// 2. Design a "wrapper" class
 public class Point {
-	private PointCarte pc; // 2. Design a "wrapper" class
+	private PointCarte pc; 	
 	  
 	public Point( double xx, double yy ) {
 	    pc = new PointCarte( xx,yy );
