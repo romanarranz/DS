@@ -14,4 +14,8 @@ public class Circle {
 	public double getDiameter() {
 		return this.circleData.getRadius() * 2;
 	}
+	
+	public String getColor(){
+		return this.circleData.getColor().toString();
+	}
 }

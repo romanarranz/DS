@@ -7,8 +7,8 @@ public class Color {
 	
 	public Color(int r, int g, int b){
 		this.R = r;
-		this.G = r;
-		this.B = r;		
+		this.G = g;
+		this.B = b;		
 	}
 	
 	public int getR(){
@@ -21,5 +21,9 @@ public class Color {
 	
 	public int getB(){
 		return this.B;
+	}
+	
+	public String toString(){
+		return this.R + "," + this.G + "," + this.B;
 	}
 }
