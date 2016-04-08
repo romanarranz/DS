@@ -19,7 +19,7 @@ El patrón delegación suele no resultar tan trivial como el mecanismo de herenc
 
 ##Estructura
 
-![image1](uml.svg)
+![image1](./uml.svg)
 
 ##Verificación
 
