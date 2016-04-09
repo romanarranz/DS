@@ -6,22 +6,6 @@
 
 using namespace std;
 
-string Number::type = "decimal";
-Number * Number::INSTANCE = 0;
-
-Number * Number::getInstance() {
-	
-	if (!INSTANCE) {
-	    // 3. Do "lazy initialization" in the accessor function
-	    if (type == "octal")
-	      	INSTANCE = new Octal();
-	    else 
-    		INSTANCE = new Number();
-    }
-
-  	return INSTANCE;
-}
-
 int main()
 {
 	// Number myInstance; - error: cannot access protected constructor

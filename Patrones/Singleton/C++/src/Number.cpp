@@ -1,7 +1,10 @@
 #include <Number.h>
 
+string Number::type = "decimal";
+Number * Number::INSTANCE = 0;
+
 Number::Number() {
-	cout << "constructor: ";
+	cout << "constructor: ";	
 }
 
 void Number::setType(string t) {
