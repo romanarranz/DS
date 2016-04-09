@@ -1,4 +1,6 @@
-package example;
+package execute;
+
+import example.Number;
 
 public class SingletonExample {
 
