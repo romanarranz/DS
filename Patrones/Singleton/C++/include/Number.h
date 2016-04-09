@@ -21,7 +21,7 @@ class Number
 		virtual ~Number();
 
 	public:
-		 // 2. Define a public static accessor func
+		// 2. Define a public static accessor func
     	static Number * getInstance(); 
     	static void setType(string t);
     	virtual void setValue(int in);
