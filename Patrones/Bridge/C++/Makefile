@@ -30,30 +30,42 @@ CPPFLAGS = -Wall -std=c++11 -g -I$(INC) -O3 -c
 MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIR = $(lastword $(notdir $(patsubst %/,%,$(dir $(MAKEFILE_PATH)))))
 
-all: $(BIN)/delegacion
+all: $(BIN)/bridgeStack
 
 # ************ Ejecutables ************
 
-$(BIN)/delegacion: $(OBJ)/delegacion.o $(OBJ)/calculator.o $(OBJ)/realcalculator.o $(OBJ)/realcalculatorv2.o
-	@echo "Creando ./bin/delegacion..."
+$(BIN)/bridgeStack: $(OBJ)/bridgeStack.o $(OBJ)/stack.o $(OBJ)/stacklist.o $(OBJ)/stackfifo.o $(OBJ)/stackarray.o $(OBJ)/stackhanoi.o $(OBJ)/node.o
+	@echo "Creando ./bin/bridgeStack..."
 	@$(CXX) -o $@ $^
 
 # ************ Objetos ************
 
-$(OBJ)/delegacion.o: $(SRC)/main.cpp
-	@echo "Creando ./obj/delegacion.o..."
+$(OBJ)/bridgeStack.o: $(SRC)/main.cpp
+	@echo "Creando ./obj/bridgeStack.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/calculator.o: $(SRC)/Calculator.cpp
-	@echo "Creando ./obj/calculator.o..."
+$(OBJ)/stack.o: $(SRC)/Stack.cpp
+	@echo "Creando ./obj/stack.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/realcalculator.o: $(SRC)/RealCalculator.cpp
-	@echo "Creando ./obj/calculator.o..."
+$(OBJ)/stacklist.o: $(SRC)/StackList.cpp
+	@echo "Creando ./obj/stacklist.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/realcalculatorv2.o: $(SRC)/RealCalculatorv2.cpp
-	@echo "Creando ./obj/calculator.o..."
+$(OBJ)/stackfifo.o: $(SRC)/StackFIFO.cpp
+	@echo "Creando ./obj/stackfifo.o..."
+	@$(CXX) $(CPPFLAGS) $< -o $@
+
+$(OBJ)/stackarray.o: $(SRC)/StackArray.cpp
+	@echo "Creando ./obj/stackarray.o..."
+	@$(CXX) $(CPPFLAGS) $< -o $@
+
+$(OBJ)/stackhanoi.o: $(SRC)/StackHanoi.cpp
+	@echo "Creando ./obj/stackhanoi.o..."
+	@$(CXX) $(CPPFLAGS) $< -o $@
+
+$(OBJ)/node.o: $(SRC)/Node.cpp
+	@echo "Creando ./obj/node.o..."
 	@$(CXX) $(CPPFLAGS) $< -o $@
 
 .PHONY: clean zip tar
