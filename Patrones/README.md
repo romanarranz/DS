@@ -64,3 +64,9 @@ La idea de patrón es un intento de estandarizar lo que ya son buenas prácticas
 
 ###No difieren significativamente de otras abstracciones
 Según algunos autores la nueva terminologia para describir los fenomenos existentes en el campo de la programación es innecesaria. El paradigma MVC se promociona como un ejemplo de "patrón", aun siendo anterior al concepto de "patrones de diseño". Se afirma que la principal contribución de los patrones de diseño (sugerida por la Banda de los Cuatro) fue el uso de los patrones de Alexander como una forma de documentación.
+
+
+##Referencias
+
+- [SourceMaking](https://sourcemaking.com)
+- [Wikipedia](https://es.wikipedia.org)
