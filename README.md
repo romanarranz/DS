@@ -23,7 +23,7 @@ En esta práctica se aborda tanto el diseño como la implementación de diferent
 > - Configuración de equipos - Visitante
 > - Simulador de coche - Interceptor (intercepting filter pattern)
 
-### Práctica 3: Test unitarios y 
+### Práctica 3: Pruebas unitarias y de Integración
 En esta práctica se aborda tanto la implementación de una suite de pruebas para los distintos paquetes de test unitarios que tenemos que desempeñar para probar cada uno de las clases de nuestro SCAV (Sistema de Conduccion Automatica de Vehiculos).
 
 > **Consideraciones:**
