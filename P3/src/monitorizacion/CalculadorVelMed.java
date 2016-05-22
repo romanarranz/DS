@@ -7,14 +7,14 @@ public class CalculadorVelMed {
 	private double _gastoMedio;
 	private double _gastoValorAnterior;
 	private int _tiempo_gas, tiempo_vel;
-	protected CalculadorVelMed() {
+	public CalculadorVelMed() {
 		_velMedia = 0;
 		sumatoria_vel = 0;
 		sumatoria_gas = 0.0;
 		_tiempo_gas = tiempo_vel = 1;
 		_gastoValorAnterior = 100.0;
 	}
-	protected void calcularVelocidadMedia(Eje aEje_e) {
+	public void calcularVelocidadMedia(Eje aEje_e) {
 		if(aEje_e.velAnterior != 0){
 			if(sumatoria_vel < 1000000000){
 				sumatoria_vel += aEje_e.velAnterior;
@@ -30,7 +30,7 @@ public class CalculadorVelMed {
 		sumatoria_gas = sumatoria_vel = 0;
 		_tiempo_gas = tiempo_vel = 1;
 	}
-	protected double leerVelMedia() {
+	public double leerVelMedia() {
 		return _velMedia;
 	}
 	public void calcularGastoMedio(Eje aEje_e, Deposito depo) {
@@ -50,5 +50,14 @@ public class CalculadorVelMed {
 	}
 	public double leerGastoMedio() {
 		return _gastoMedio;
+	}
+	public double getSumatoriaGas(){
+		return sumatoria_gas;
+	}
+	public int getTiempoGas(){
+		return _tiempo_gas;
+	}
+	public int getTiempoVel(){
+		return tiempo_vel;
 	}
 }

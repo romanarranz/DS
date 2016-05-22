@@ -23,7 +23,9 @@ public final class allTest {
 	    
 	    System.out.println("************ TEST MONITORIZACION ************");
 	    result = JUnitCore.runClasses(
-	    	testControlVelocidad.PedalTest.class
+	    	testMonitorizacion.DepositoTest.class,
+	    	testMonitorizacion.RelojMTest.class,
+	    	testMonitorizacion.ReseteoTest.class
 	    );
 	    for (Failure failure : result.getFailures()) {
 	    	System.out.println(failure.toString());

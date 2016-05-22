@@ -5,10 +5,6 @@ public class Reloj extends Thread {
 	private int t;
 	private volatile boolean running = true;
 
-    public void terminate() {
-        running = false;
-    }
-
 	public Reloj(ControlVelocidad ControlVelocidad_c) {
 		this.control = ControlVelocidad_c;
 		this.t = 0;
@@ -26,6 +22,10 @@ public class Reloj extends Thread {
 			}	
 			control.controlarEstado();
 		}
+	}
+	
+	public void terminate() {
+		running = false;
 	}
 	
 	public int getTiempoTranscurrido(){
