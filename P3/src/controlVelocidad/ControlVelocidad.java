@@ -29,36 +29,36 @@ public class ControlVelocidad {
 				if(acelera.leerEstado()){
 					incremento = (int) acelera.actualizarAcelerador(eje.velAnterior);
 					acelera.incrementar(incremento, eje);
-					calcularVelcidad();
+					calcularVelocidad();
 				}
 				if(freno.leerEstado()){
 					decremento = (int) freno.actualizarFreno();
 					freno.decremento(decremento, eje);
-					calcularVelcidad();
+					calcularVelocidad();
 				}
 				if(!acelera.leerEstado() && !freno.leerEstado()){
 					freno.decremento(Freno.ROZAMIENTO, eje);
-					calcularVelcidad();
+					calcularVelocidad();
 				}
 			}
 			if(estadoPalanca.leerEstado() == Palanca.MANTENIENDO){
 				almacena.almacenarVelSeleccionada();
 				automatico.mantenerVelocidad(acelera, freno,almacena, eje);
-				calcularVelcidad();
+				calcularVelocidad();
 			}
 			if(estadoPalanca.leerEstado() == Palanca.REINICIANDO){
 				automatico.mantenerVelocidad(acelera, freno, almacena, eje);
-				calcularVelcidad();					
+				calcularVelocidad();				
 			}
 		}
 		else{
 			if(freno.leerEstado()){
 				decremento = (int) freno.actualizarFreno();
 				freno.decremento(decremento, eje);
-				calcularVelcidad();
+				calcularVelocidad();
 			}
 			freno.decremento(Freno.ROZAMIENTO, eje);
-			calcularVelcidad();
+			calcularVelocidad();
 		}
 	}
 	public void cambiarPalanca(int aInt_estado) {
@@ -76,7 +76,7 @@ public class ControlVelocidad {
 	public long obtenerRevtotal(){
 		return eje.leerRevolucionesTotales();	
 	}
-	protected void calcularVelcidad(){
+	protected void calcularVelocidad(){
 		eje.calcularVelocidad(almacena);
 	}
 	public int leerVelSeleccionada() {

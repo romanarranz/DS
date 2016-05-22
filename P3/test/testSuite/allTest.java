@@ -13,7 +13,25 @@ public final class allTest {
 	    	testControlVelocidad.MotorTest.class,
 	    	testControlVelocidad.EjeTest.class,
 	    	testControlVelocidad.AutomaticoTest.class,
-	    	testControlVelocidad.RelojTest.class
+	    	testControlVelocidad.RelojTest.class,
+	    	testControlVelocidad.CalculadorVelTest.class,
+	    	testControlVelocidad.ControlVelocidadTest.class
+	    );
+	    for (Failure failure : result.getFailures()) {
+	    	System.out.println(failure.toString());
+	    }
+	    
+	    System.out.println("************ TEST MONITORIZACION ************");
+	    result = JUnitCore.runClasses(
+	    	testControlVelocidad.PedalTest.class
+	    );
+	    for (Failure failure : result.getFailures()) {
+	    	System.out.println(failure.toString());
+	    }
+	    
+	    System.out.println("************ TEST SIMULADOR ************");
+	    result = JUnitCore.runClasses(
+	    	testControlVelocidad.PedalTest.class
 	    );
 	    for (Failure failure : result.getFailures()) {
 	    	System.out.println(failure.toString());
