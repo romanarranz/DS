@@ -16,7 +16,7 @@ public class Freno implements Pedal{
 		_estado = false;
 	}
 	public void pisar() {
-		_estado = true; 
+		_estado = true;
 	}
 	public boolean leerEstado() {
 		return _estado;

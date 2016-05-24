@@ -82,4 +82,25 @@ public class ControlVelocidad {
 	public int leerVelSeleccionada() {
 		return almacena.leerVelSeleccionada();
 	}
+	public Almacenamiento getAlmacen(){
+		return this.almacena;
+	}
+	public Palanca getPalanca(){
+		return this.estadoPalanca;
+	}
+	public Reloj getReloj(){
+		return this.reloj;
+	}
+	public Acelerador getAcelerador(){
+		return this.acelera;
+	}
+	public Freno getFreno(){
+		return this.freno;
+	}
+	public Eje getEje(){
+		return this.eje;
+	}
+	public Motor getMotor(){
+		return this.motor;
+	}
 }

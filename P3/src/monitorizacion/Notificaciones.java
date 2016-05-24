@@ -14,7 +14,7 @@ public class Notificaciones {
 	public final static String NOTIFACEITE = "Aceite";
 	public final static String NOTIFPASTILLAS = "Pastillas";
 	public final static String NOTIFREV = "Rev General";
-	protected Notificaciones() {
+	public Notificaciones() {
 		_inicialAceite = 500000; 
 		_inicialPastillas = 1000000; 
 		_inicialRevision = 10000000; 
@@ -22,31 +22,31 @@ public class Notificaciones {
 		_revolPastillas = _ateriorRevolPastillas = 0;
 		_revolRevision = _anteriorRevolRevision = 0;
 	}
-	protected void actualizarNotificaciones(Eje eje){
+	public void actualizarNotificaciones(Eje eje){
 		_revActuales = eje.leerRevolucionesTotales();
 		_revolAceite = _revActuales - _ateriorRevolAceite;
 		_revolPastillas = _revActuales - _ateriorRevolPastillas;
 		_revolRevision = _revActuales - _anteriorRevolRevision;
 	}
-	protected long leerRevolAceite() {
+	public long leerRevolAceite() {
 		return _revolAceite;
 	}
-	protected long leerRevolPastillas() {
+	public long leerRevolPastillas() {
 		return _revolPastillas;
 	}
-	protected long leerRevolRevision() {
+	public long leerRevolRevision() {
 		return _revolRevision;
 	}
-	protected void iniciarAceite() {
+	public void iniciarAceite() {
 		_ateriorRevolAceite = _revActuales;
 	}
-	protected void iniciarPastillas() {
+	public void iniciarPastillas() {
 		_ateriorRevolPastillas = _revActuales;
 	}
-	protected void iniciarRevision() {
+	public void iniciarRevision() {
 		_anteriorRevolRevision = _revActuales;
 	}
-	protected boolean notificarAceite() {
+	public boolean notificarAceite() {
 		boolean notifica;
 		if(_revolAceite >= _inicialAceite){
 			notifica = true;
@@ -56,7 +56,7 @@ public class Notificaciones {
 		}
 		return notifica;
 	}
-	protected boolean notificarPastillas() {
+	public boolean notificarPastillas() {
 		boolean notifica;
 		if(_revolPastillas >= _inicialPastillas){
 			notifica = true;
@@ -66,7 +66,7 @@ public class Notificaciones {
 		}
 		return notifica;
 	}
-	protected boolean notificarRevision() {
+	public boolean notificarRevision() {
 		boolean notifica;
 		if(_revolRevision >= _inicialRevision){
 			notifica = true;
@@ -76,13 +76,13 @@ public class Notificaciones {
 		}
 		return notifica;
 	}
-	protected String leerNotifAceite() {
+	public String leerNotifAceite() {
 		return NOTIFACEITE;
 	}
-	protected String leerNotifPastillas() {
+	public String leerNotifPastillas() {
 		return NOTIFPASTILLAS;
 	}
-	protected String leerNotifRevision() {
+	public String leerNotifRevision() {
 		return NOTIFREV;
 	}
 }

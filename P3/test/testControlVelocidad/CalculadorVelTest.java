@@ -1,18 +1,21 @@
 package testControlVelocidad;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controlVelocidad.Almacenamiento;
 import controlVelocidad.CalculadorVel;
+import controlVelocidad.ControlVelocidad;
+import simulador.Interfaz;
 
 public class CalculadorVelTest {
-	private CalculadorVel c;
+	private Interfaz i;
+	private ControlVelocidad c;
+	private CalculadorVel cal;
 	private boolean err;
 	
 	@BeforeClass
@@ -22,17 +25,38 @@ public class CalculadorVelTest {
 	
 	@Before
 	public void testInit(){
-		c = new CalculadorVel();
+		i = new Interfaz();
+		c = i.getSimulacion().getPanelBotones().getControlVelocidad();
+		cal = i.getSimulacion().getPanelBotones().getControlVelocidad().getEje().getCalculadorVel();
 		err = false;
+	}
+	
+	@Test
+	public void testInicializacion(){
+		System.out.print("\ttestInicializacion...");
+		try {
+			// Se ha creado de forma exitosa el calculadorVelocidad
+			assertNotNull(cal);
+			assertNotNull(c);
+			assertTrue(cal instanceof CalculadorVel);
+			assertTrue(c instanceof ControlVelocidad);			
+		}
+		catch(AssertionError e){
+			System.out.print("\tnot ok\n");
+			err = true;
+			throw e;
+		}
+		
+		if(!err) System.out.print("\tok\n");
 	}
 	
 	@Test
 	public void testVelocidad(){
 		System.out.print("\ttestVelocidad...");
 		try {
-			assertTrue(c.calcularVelocidad(200, 0.8, new Almacenamiento()) > 0.00001);
-			assertFalse(c.calcularVelocidad(18, 0.8, new Almacenamiento()) < 0);
-			assertEquals(c.calcularVelocidad(40, 1, new Almacenamiento()), 1);
+			assertEquals(new Long(0), new Long(c.obtenerRevtotal()));
+			assertEquals(new Integer(4), new Integer(cal.calcularVelocidad(180, 1, c.getAlmacen())));
+			assertEquals(new Integer(0), new Integer(c.leerVelSeleccionada()));
 		}
 		catch(AssertionError e){
 			System.out.print("\tnot ok\n");

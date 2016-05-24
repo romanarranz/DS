@@ -33,4 +33,8 @@ public final class Eje {
 		velAnterior = calculadorVel.calcularVelocidad(vueltas, RADIO, almacena);
 		vueltasTotales += vueltas/24;
 	}
+	
+	public CalculadorVel getCalculadorVel(){
+		return this.calculadorVel;
+	}
 }

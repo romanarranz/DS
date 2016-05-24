@@ -186,4 +186,8 @@ public class PanelEtiquetas extends JPanel implements Observador {
 		mostrarNotificaciones();
 		interfaz.repaint();
 	}
+	
+	public ControlVelocidad getControlVelocidad(){
+		return this.control;
+	}
 }

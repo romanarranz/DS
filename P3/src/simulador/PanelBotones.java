@@ -123,7 +123,7 @@ public class PanelBotones extends JPanel implements Observador {
 	       	}
 		});
 	}
-	synchronized private void BotonAcelerarActionPerformed(ActionEvent evt) {
+	synchronized public void BotonAcelerarActionPerformed(ActionEvent evt) {
 		if(!BotonFreno.isSelected()){
 			interfaz.etiquetaEstado.setText("Acelerando");
 			control.cambiarPalanca(Palanca.APAGADO);
@@ -145,13 +145,13 @@ public class PanelBotones extends JPanel implements Observador {
 		control.freno.soltar();
 		control.acelera.soltar();
 	}
-	synchronized private void BotonReiniciarActionPerformed(ActionEvent evt) {
+	synchronized public void BotonReiniciarActionPerformed(ActionEvent evt) {
 		interfaz.etiquetaEstado.setText("Reiniciando");
 		control.cambiarPalanca(Palanca.REINICIANDO);
 		control.freno.soltar();
 		control.acelera.soltar();
 	}
-	synchronized private void BotonFrenoActionPerformed(ActionEvent evt) {		
+	synchronized public void BotonFrenoActionPerformed(ActionEvent evt) {		
 		if(BotonFreno.isSelected()){
 			interfaz.etiquetaEstado.setText("Frenando");
 			BotonFreno.setText("Soltar Freno");
@@ -165,7 +165,7 @@ public class PanelBotones extends JPanel implements Observador {
 			interfaz.etiquetaEstado.setText("Punto muerto");	
 		}
 	}
-	synchronized private void BotonEncenderActionPerformed(ActionEvent evt) {
+	synchronized public void BotonEncenderActionPerformed(ActionEvent evt) {
 		control.motor.cambiarEstado();
 		if(BotonEncender.isSelected()){
 			BotonEncender.setText("Apagar");
@@ -252,5 +252,16 @@ public class PanelBotones extends JPanel implements Observador {
 	public void actualizar() {
 		activarBotones();
 		desactivarBotones();
+	}
+	
+	public ControlVelocidad getControlVelocidad(){
+		return control;
+	}
+	
+	public void toggleAcelerador(){
+		BotonAcelerar.setSelected(!BotonAcelerar.isSelected());
+	}
+	public void toggleFreno(){
+		BotonFreno.setSelected(!BotonFreno.isSelected());
 	}
 }

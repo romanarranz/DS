@@ -3,7 +3,6 @@ import javax.swing.*;
 
 import controlVelocidad.*;
 import monitorizacion.Monitorizacion;
-import testMonitorizacion.*;
 
 @SuppressWarnings("serial")
 public class Interfaz extends JApplet {
@@ -34,5 +33,13 @@ public class Interfaz extends JApplet {
 		add(panelE);
 		setVisible(true);
 		destroy();
+	}
+	
+	public ControlVelocidad getControlVelocidad(){
+		return this.control;
+	}
+	
+	public Simulacion getSimulacion(){
+		return this.simulacion;
 	}
 }
