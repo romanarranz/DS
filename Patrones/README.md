@@ -70,3 +70,4 @@ Según algunos autores la nueva terminologia para describir los fenomenos existe
 
 - [SourceMaking](https://sourcemaking.com)
 - [Wikipedia](https://es.wikipedia.org)
+- [TutorialsPoint](http://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
