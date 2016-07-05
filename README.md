@@ -26,6 +26,8 @@ En esta práctica se aborda tanto el diseño como la implementación de diferent
 
 ### Práctica 2: Arquitectura de Software
 
+Se encuentra en un repositorio aparte: [FarmaciaDS](https://github.com/romanarranz/FarmaciaDS)
+
 En esta práctica se ha realizado una implementación del supuesto práctico 1 que se nos proporionaba en la asignatura.
 
 Consistía en realizar un sistema de farmacias en el cual el usuario a través de su dispositivo móvil pudiera seleccionar entre las farmacias cercanas a él para acceder a ella y visualizar su catálogo de productos y comprar cuantos productos quisiera, además que esta operación la podría hacer en distintas farmacias para rellenar su cesta.
@@ -39,7 +41,7 @@ También se pedia realizar un backend para el farmaceutico y que pudiera realiza
 > - La implementación de la aplicación para dispositivos móviles sólo se ha contemplado en la plataforma Android.
 > - La implementación del backend se ha realizado con jsp y servlets.
 > - El despliegue se ha hecho en un entorno real, más concretamente en Azure para el webservice.
-> - La aplicación Android no se llegó a subir al market. 
+> - La aplicación Android no se llegó a subir al market.
 
 ### Práctica 3: Pruebas unitarias y de Integración
 En esta práctica se aborda tanto la implementación de una suite de pruebas para los distintos paquetes de test unitarios que tenemos que desempeñar para probar cada uno de las clases de nuestro SCAV (Sistema de Conduccion Automatica de Vehiculos).
